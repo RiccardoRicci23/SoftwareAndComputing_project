@@ -19,10 +19,10 @@ The run checker extracts 4 main quantities from 3 different .root files: prealig
 
 These 4 quantities are: 
 
-a) Cluster Size (in number of pixels) associated to every reconstructed track;
-b) Residuals
-c) 2-D efficiency map of the ALPIDE chip as a function of (x,y) coordinates in terms of pixel row, column;
-d) Total Efficiency of the chip;
+1. Cluster Size (in number of pixels) associated to every reconstructed track;
+2. Residuals
+3. 2-D efficiency map of the ALPIDE chip as a function of (x,y) coordinates in terms of pixel row, column;
+4. Total Efficiency of the chip;
 
 
 
