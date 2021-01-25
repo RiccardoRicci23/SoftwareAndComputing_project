@@ -10,16 +10,25 @@
 
 ///////////// INSTRUCTIONS ///////////////
 //										//
-//1. Load the macro: 					//
-// 		".L run_checker" 				//	
-//or using #include. 					//
+// 0. Open ROOT							//
+//     "root -l"						//
 //										//
-//then execute:							//
+// 1. Load the macro: 					//
+// 		".L run_checker.cpp" 			//	
+// or using #include "run_checker.cpp" 	//
+//										//
+// 2. then execute:						//
 //		"run_checker(run_number)"		//
-//where run_number is the name of the considered run_number to be checked (same as its folder name: ./run_checker/run_number)
 //										//
-//Alternatively use the command: 		//
-//		".x run_checker(run_number)"	//	
+// where run_number is the name of the  //
+// considered run_number to be checked  //
+// (same as its folder name: 			//
+// ./run_checker/run_number)			//
+// and should be encloed by ""			//
+//										//
+// Alternatively use the command: 		//
+//		".x run_checker(run_number)"	//
+//										//
 //////////////////////////////////////////
 
 
