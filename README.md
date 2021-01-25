@@ -9,7 +9,7 @@ The aim is to analyse the output .root files coming from the Corryvreckan progra
 The experimental setup is made of 3 ALPIDE flat chips + 1 ALPIDE BENT chip + 3 ALPIDE flat chips, where the central BENT chip in the middle is called Detector Under Test (DUT). 
 
 
-////// IMAGE WITH THE SETUP
+////// IMAGE WITH THE SETUP & ALPIDE PHOTO/S
 
 
 # The program
