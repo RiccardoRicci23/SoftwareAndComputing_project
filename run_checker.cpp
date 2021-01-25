@@ -1,12 +1,35 @@
 // Riccardo Ricci
-//the_run_checker
+// run_checker
+
 // 2021, January 15th
-
-// updated JAnuary 16th
-
+// updated JAnuary 25th
 
 
-//this one has to be used to extract main quantities from a single run after having runned it on Corryvreckan
+// the following macro exstracts the main parameters from the output of the Corryvreckan framework. 
+ 
+
+///////////// INSTRUCTIONS ///////////////
+//										//
+//1. Load the macro: 					//
+// 		".L run_checker" 				//	
+//or using #include. 					//
+//										//
+//then execute:							//
+//		"run_checker(run_number)"		//
+//where run_number is the name of the considered run_number to be checked (same as its folder name: ./run_checker/run_number)
+//										//
+//Alternatively use the command: 		//
+//		".x run_checker(run_number)"	//	
+//////////////////////////////////////////
+
+
+
+
+Alternatively use the command ".x run_checker"
+
+//2. execute
+
+
 
 // :::::::::::::  FIRST DEFINITIONSSSS :::::::::::::::::::::::: //
 void run_checker(TString run_name){
