@@ -9,26 +9,26 @@
  
 
 ///////////// INSTRUCTIONS ///////////////
-//										//
-// 0. Open ROOT							//
-//     "root -l"						//
-//										//
-// 1. Load the macro: 					//
-// 		".L run_checker.cpp" 			//	
+//					//
+// 0. Open ROOT				//
+//     "root -l"			//
+//					//
+// 1. Load the macro: 			//
+// 		".L run_checker.cpp" 	//	
 // or using #include "run_checker.cpp" 	//
-//										//
-// 2. then execute:						//
-//		"run_checker(run_number)"		//
-//										//
+//					//
+// 2. then execute:			//
+//	"run_checker(run_number)"	//
+//					//
 // where run_number is the name of the  //
 // considered run_number to be checked  //
-// (same as its folder name: 			//
-// ./run_checker/run_number)			//
-// and should be encloed by ""			//
-//										//
-// Alternatively use the command: 		//
-//		".x run_checker(run_number)"	//
-//										//
+// (same as its folder name: 		//
+// ./run_checker/run_number)		//
+// and should be encloed by ""		//
+//					//
+// Alternatively use the command: 	//
+//	".x run_checker(run_number)"	//
+//					//
 //////////////////////////////////////////
 
 
@@ -274,11 +274,11 @@ void run_checker(TString run_name){
 
 
 			//////////////////
-			//				//	
-			//	END of all	//	
-			//		the		//	
-			//	extractions	//	
-			//				//	
+			//		//	
+			// END of all	//	
+			// the		//	
+			// extractions	//	
+			//		//	
 			//////////////////
             
 			
