@@ -36,8 +36,7 @@ These 4 quantities are:
 3. 2-D efficiency map of the ALPIDE chip as a function of (x,y) coordinates in terms of pixel row, column;
 4. Total Efficiency of the chip;
 
-
-
+It is possible to find further instructions opening run_checker.cpp file. in the main folder. A sample run (run....509) has already been analyzed but there is also the possibility to make further plots using the other run_number as argument.
 
 
 ## 2. Data extraction
