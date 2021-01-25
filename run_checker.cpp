@@ -24,16 +24,8 @@
 
 
 
-
-Alternatively use the command ".x run_checker"
-
-//2. execute
-
-
-
-// :::::::::::::  FIRST DEFINITIONSSSS :::::::::::::::::::::::: //
 void run_checker(TString run_name){
-        TString dirname = "./run_checker/" + run_name ;
+        TString dirname = "./run_checker/" + run_name ; 
         dirname += "/";
         const char *ext = ".root";
         TString run_number = run_name.Replace(0,3,"");
@@ -41,8 +33,12 @@ void run_checker(TString run_name){
         
             cout << "run number is: " << run_number << endl; 
             cout << "Looking for .root files..." << endl;
-    //store array of .root filenames
-    vector <string> run_number_analysis, run_number_prealignment, run_number_alignment; //here i will save the names of my root file for many different uses
+			
+			
+			
+    // this vector strings will contain the names of the .root file of interest
+	// the use of vector stringa allows for further modifications in the future evetually
+    vector <string> run_number_analysis, run_number_prealignment, run_number_alignment; 
     TSystemDirectory dir(dirname, dirname); //directory, but in ROOT language
     TList *files = dir.GetListOfFiles();
     TCanvas *canvas;
@@ -54,37 +50,36 @@ void run_checker(TString run_name){
         
         
 //:::::::::::::::::   if-while external block :::::::::::::::::::: //
+// inside this piece of code i will finaly make a list of .root files to open.
     if (files) {
         TSystemFile *file;
         TString fname;
-        TFile *file_to_open; // pointer: initialized with a new file.root at each loop
-        TIter next(files);   // iterator
+        TFile *file_to_open; 
+        TIter next(files);   
         
+		// this annidated while-loop selects the name of each file and initializes it. 
         while ((file = (TSystemFile *) next())) {
             fname = file->GetName();
-                //
-                //
-                //
-                //
-                //
-                //
+                
+				
+				
+				
+				
+// from now on, there are 3 different blocks per each filename & filetype to be open/analyzed	
+
 ////////////////////   PREALIGNMENT-START  ///////////////////////////
-            
             if (!file->IsDirectory() && fname.EndsWith(ext) && fname.BeginsWith("prealignment")){
 				// extract only run number and ADD it to run_number vector
 				string buffer_string = fname.Data();
-				//buffer_string.replace(0,9,"");  //August Data have different namelenghts
-				//buffer_string.replace(6,5,"");
-                run_number_prealignment.push_back(buffer_string);
+				run_number_prealignment.push_back(buffer_string);
                 
-                 //OPEN .root file
+                //OPEN .root file then:
                 file_to_open = new TFile(dirname+fname);
-                // file_to_open->ls(); // wanna see the folder content? uncomment this             
+                // file_to_open->ls(); // wanna see the folder content? uncomment this line            
                 cout << "prealignment is OK" << endl;
                 
-                //here i must implement correlationsX,Y and correlation2D
-                //.....
                 
+                // extract correlations
                 gFile->cd("Prealignment/ALPIDE_3");
                 TH1F *correlationX;
                     gDirectory->GetObject("correlationX",correlationX);
@@ -146,7 +141,7 @@ void run_checker(TString run_name){
                 correlationY_2D->Draw("colz");
                 canvas->cd(4)->Draw();
                 
-                
+                // print
                 canvas->Print("./run_checker/run"+run_number+"_prealignment_DUTcorrelations.png");               
 }//end INTERNAL if  ////////////////////////  PREALIGNMENT-STOP  //////////////////        
                 //
@@ -160,22 +155,12 @@ void run_checker(TString run_name){
                 //
                 //
                 //
-                //      
-////////////////////   ALIGNMENT-START  ///////////////////////////
-            
+                //      //alignment not implemented yet, it does not contain useful quantities for now
+////////////////////   ALIGNMENT-START ///////////////////////////           
             if (!file->IsDirectory() && fname.EndsWith(ext) && fname.BeginsWith("alignment") && fname.BeginsWith("pre")==false){
- 
-				
 				// extract only run number and ADD it to run_number vector
 				string buffer_string = fname.Data();
-				//buffer_string.replace(0,9,"");  //August Data have different namelenghts
-				//buffer_string.replace(6,5,"");
                 run_number_alignment.push_back(buffer_string);
-
-                
-                
-                //here i must implement reference planes Residuals eventually
-                //.....
 }//end INTERNAL if  ////////////////////////  ALIGNMENT-END  //////////////////
                 //
                 //
@@ -190,7 +175,6 @@ void run_checker(TString run_name){
                 //
                 //
 ////////////////////   ANALYSIS-START  ///////////////////////////
-            
             if (!file->IsDirectory() && fname.EndsWith(ext) && fname.BeginsWith("analysis")){
  				// extract only run number and ADD it to run_number vector
 				string buffer_string = fname.Data();
@@ -204,7 +188,7 @@ void run_checker(TString run_name){
                 
                 
                 
-                //::::::::::: RESIDUALS EXTRACTION ::::::::::::::::::::::: //
+                //::::::::::: RESIDUALS X,Y EXTRACTION ::::::::::::::::::::::: //
                 //define some pointers for the 2 histos                 
                 gFile->cd("AnalysisDUT;1/ALPIDE_3;1");
                 TH1F *residualsX;
@@ -213,19 +197,14 @@ void run_checker(TString run_name){
                     gDirectory->GetObject("residualsX", residualsX);
                     gDirectory->GetObject("residualsY", residualsY);
 
-                //to fit, please uncomment
-                    //residualsX->Fit("gaus");
-                    //residualsX->GetFunction("gaus")->SetLineColor(2);
-                    //residualsX->GetFunction("gaus")->SetLineStyle(2);
                     residualsX->GetXaxis()->SetTitleSize(0.05);
                     residualsX->GetYaxis()->SetTitleSize(0.05);
                
-                    //residualsY->Fit("gaus");
-                    //residualsY->GetFunction("gaus")->SetLineColor(2);
-                    //residualsY->GetFunction("gaus")->SetLineStyle(2);
                     residualsY->GetXaxis()->SetTitleSize(0.05);
                     residualsY->GetYaxis()->SetTitleSize(0.05);
            
+		   
+				//draw and print
                 canvas = new TCanvas ("c1", "Residuals X,Y", 200, 10, 1300, 500);
                 canvas -> Divide (2, 1);
                
@@ -236,11 +215,7 @@ void run_checker(TString run_name){
                 canvas->cd(2)->SetRightMargin(0.09);
                 canvas->cd(2)->SetLeftMargin(0.25);
                 canvas->cd(2)->SetBottomMargin(0.25);
-                // fit legend
-                   //gStyle->SetOptFit(1011); // to see fit parameters on the legend
-
-               
-                //Finally plot please
+                
                     canvas->cd(1);
                     residualsX->Draw();
 
@@ -248,13 +223,13 @@ void run_checker(TString run_name){
                     residualsY->Draw();
                     canvas->Draw();
                     canvas->Print("./run_checker/run"+run_number+"_residualsXY.png");
-                //::::::::::: RESIDUALS EXTRACTION ::::  END  ::::::::::::::::::: //
+				//::::::::::: RESIDUALS EXTRACTION ::::  END  ::::::::::::::::::: //
                 //
                 //
                 //
                 //
                 //
-                //::::::::::: TOTAL EFFICIENCY EXTRACTION ::::::::::::::::::::::: //
+                //::::::::::: DETECTOR TOTAL EFFICIENCY EXTRACTION ::::::::::::::::::::::: //
                 TEfficiency *Eff;
                 gFile->cd("AnalysisEfficiency/ALPIDE_3");
                 gDirectory->GetObject("eTotalEfficiency", Eff);             
@@ -268,7 +243,9 @@ void run_checker(TString run_name){
                     canvas->Print("./run_checker/run"+run_number+"_totalEfficiency.png");
                     
                 
-                 //::::::::::: EFFICIENCY MAP EXTRACTION ::::::::::::::::::::::: //
+				
+				
+                //::::::::::: DETECTOR EFFICIENCY MAP EXTRACTION ::::::::::::::::::::::: //
                 TProfile2D *chipEfficiencyMap_trackPos;
                 gDirectory->GetObject("chipEfficiencyMap_trackPos", chipEfficiencyMap_trackPos);
                 canvas = new TCanvas ("c1", "chipEfficiencyMap_trackPos", 200, 10, 750, 500);
@@ -280,36 +257,24 @@ void run_checker(TString run_name){
                     canvas->Draw();
                     chipEfficiencyMap_trackPos->GetXaxis()->SetTitleSize(0.05);
                     chipEfficiencyMap_trackPos->GetYaxis()->SetTitleSize(0.05);
-					//canvas->BuildLegend(0.1, 0.8, 0.4, 0.88);
 					canvas->Print("./run_checker/run"+run_number+"_chipEfficiencyMap_trackPos.png");
 					
-                 //::::::::::: EFFICIENCY EXTRACTION ::::  END  ::::::::::::::::::: //
+                //::::::::::: EFFICIENCY EXTRACTION ::::  END  ::::::::::::::::::: //
 }//end INTERNAL if  ////////////////////////  ANALYSIS-END  //////////////////
 
-         
+
+
+			//////////////////
+			//				//	
+			//	END of all	//	
+			//		the		//	
+			//	extractions	//	
+			//				//	
+			//////////////////
             
-            
-            
- 
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-        }//end while
-    }// end 1st if 
+			
+        }//end external while
+    }// end external if 
         else {
         cout << "No .root files found. Change the path in run_checker.cpp" << endl;
     }//end else
@@ -317,22 +282,13 @@ void run_checker(TString run_name){
 // ::: runs to be written in a .csv file, to be read by a TGraph ::: //
 
         
-        
-        
-    //FOR NOW NO REASON TO PRINT
-        ///////// print on .csv file		  
+// check from this output if the file openings has gone OK
               int n = run_number_analysis.size();
               cout << "number of analysis.root files: "<< n << endl; 
               int m = run_number_prealignment.size();
               cout << "number of prealignment.root files: "<< m << endl;
               int s = run_number_alignment.size();
               cout << "number of alignment.root files: " <<  s << endl;
-        //ofstream of("./run_checker/check.csv"); // output stream to new.csv file
-       
-       //  for (int i = 0; i < n; ++i)
-         //            {of << run_number[i] << "," << endl;} 
-   
- 
     delete files;
   
     
