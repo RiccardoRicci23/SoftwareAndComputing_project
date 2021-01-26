@@ -143,8 +143,8 @@ canvas->Draw();
          int n = run_number.size(); // #runs  
             cout << "n_run_numbers: "<< n << endl;
          for (int i = 0; i < n; ++i)
-                       {of << run_number[i] << "," << ClusterMean[i] << endl;} 
-        
+                       {of << run_number[i] << "," << MPV[i] << endl;} 
+						//{of << run_number[i] << "," << ClusterMean[i] << endl;}
  for (auto x : ClusterMean) cout << x << endl;
         
         
