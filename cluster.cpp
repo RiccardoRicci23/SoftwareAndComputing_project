@@ -1,19 +1,33 @@
 // Riccardo Ricci
-// 2020, January 9th
-//Updated January 14th, 2021
-
-//this only_1_function - macro is made of 2 blocks
-// the "external one" is essentially an "if + while loop" (you will find this structure also in other macros) which finds every file .root in dirname, 
-    // where dirname = ./path/to/file of interest
-    // ext is the selected file extension - .root in the following case
+// 2021, January 9th
+// Updated 2021, January 26th
 
 
+///////////// INSTRUCTIONS ///////////////
+//					//
+// 0. Open ROOT				//
+//     "root -l"			//
+//					//
+// 1. Load the macro: 			//
+// 		".L cluster.cpp" 	//	
+// or using #include "run_checker.cpp" 	//
+//					//
+// 2. then execute:			//
+//	"clusterVSrun()"
+//
+//					//
+// where run_number is the name of the  //
+// considered run_number to be checked  //
+// (same as its folder name: 		//
+// ./run_checker/run_number)		//
+// and should be encloed by ""		//
+//					//	
+//					//
+//////////////////////////////////////////
 
-// GLOBAL SCOPE DECLARATIONS
 vector <double> MPV; // vector in which i will save MPV of ClusterSizeAssociated
     //Canvas Creation
 vector <double> ClusterMean; 
-
 
 
 
@@ -51,8 +65,6 @@ vector <double> ClusterMean;
                 file_to_open = new TFile(dirname+fname);   // dirname+fname = "./path/to/your_file.root"
                 
                 // file_to_open->ls(); // wanna see the folder content? uncomment this
-                
-                //file_to_open->cd("AnalysisDUT;1/pALPIDEfs_3;1"); // for June data
                 file_to_open->cd("AnalysisDUT;1/ALPIDE_3;1"); // for test August data
                 
                 //gDirectory->ls(); wanna see folder content? uncomment these 2 lines
@@ -62,6 +74,7 @@ vector <double> ClusterMean;
                 
 
              //:: INTERNAL-LOOP BLOCK ::// 
+			 
 //:::::::::::: CLUSTER_SIZE EXTRACTION ::::::::::::::::::::::: //
 //define some pointers for the 2 histos
 TH1F *CS;
@@ -104,8 +117,8 @@ canvas->Draw();
 	TString short_name = buffer_string; // "#run name"
     TString canvas_file = path + short_name + png;
             canvas->Print(canvas_file);
-// :::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::// 
-//::::::::::: CLUSTER_SIZE EXTRACTION ::::  END  ::::::::::::::::::://
+// ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::: // 
+// :::::::::: CLUSTER_SIZE EXTRACTION ::::  END  :::::::::::::::::: //
 
                 
                 
@@ -120,26 +133,25 @@ canvas->Draw();
         cout << "No .root files found. Change the path in clusterVSrun.cpp" << endl;
     }//end else
     
-// ::: runs to be written in a .csv file, to be read by a TGraph ::: //
-	
+
         
         
         
     
-        ///////// print on .csv file
+// ::: runs to be written in a .csv file, to be read by a TGraph ::: //
      ofstream of("./cluster/ClusterSizeAssociatedVSrun.csv"); // output stream to new.csv file
-         int n = run_number.size(); // # runs 
+         int n = run_number.size(); // #runs  
             cout << "n_run_numbers: "<< n << endl;
          for (int i = 0; i < n; ++i)
-                     //{of << run_number[i] << "," << MPV[i] << endl;} 
                        {of << run_number[i] << "," << ClusterMean[i] << endl;} 
         
  for (auto x : ClusterMean) cout << x << endl;
         
         
-        
     delete files;
-    return run_number;
-    
-    
-}
+    return run_number;}
+
+
+//other functions
+
+
