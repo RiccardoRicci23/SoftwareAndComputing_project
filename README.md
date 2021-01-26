@@ -8,15 +8,12 @@ The aim is to analyse the output .root files coming from the Corryvreckan progra
 
 The experimental setup is made of 3 ALPIDE flat chips + 1 ALPIDE BENT chip + 3 ALPIDE flat chips, where the central BENT chip in the middle is called Detector Under Test (DUT). 
 
- 
+
+////// IMAGE WITH THE SETUP & ALPIDE PHOTO/S
 
 
-
-
-
-
-
-Large part of the macros originally comes from SWAN, where i have written them as a first step: so that also some notebooks are present in this work. 
+# The program
+Large part of the macros originally comes from SWAN, where i have written them as a first step: so that also some notebooks are present in this work as example. 
 
 The framework consists of 3 main structures/phases:
 
@@ -27,16 +24,15 @@ The framework consists of 3 main structures/phases:
 
 ## 1. Run checking: magari dire come sono definite queste quantità...
 Look at the IMAGE below: many tries have been made to match the geometry of the problem, since it was the first time with such configuration. 
-The run checker extracts 4 main quantities from 3 different .root files: prealignment.root, aligment.root and analysis.root, which correspond to respectively different outputs by Corryvreckan.
+The run_checker.cpp macro extracts 4 main quantities from 3 different .root files: prealignment.root, aligment.root and analysis.root, which correspond to respectively different outputs as they are computed by Corryvreckan from the .raw data file. 
 
 These 4 quantities are: 
-
 1. Cluster Size: number of hit pixels associated to every reconstructed track;
-2. Residuals
-3. 2-D efficiency map of the ALPIDE chip as a function of (x,y) coordinates in terms of pixel row, column;
-4. Total Efficiency of the chip;
+2. Residuals wrt to X and Y coordinates. Their value is stricly related to the spatial resolution of the detector (SAY HOW, PLEASE);
+3. 2-D Efficiency Map of the ALPIDE chip as a function of (x,y) coordinates in terms of pixel row and column;
+4. Total Efficiency of the chip.
 
-It is possible to find further instructions opening run_checker.cpp file. in the main folder. A sample run (run....509) has already been analyzed but there is also the possibility to make further plots using the other run_number as argument.
+It is possible to find further instructions opening run_checker.cpp file. in the main folder. A sample run (run....509) has already been analyzed. There is also the possibility to make the same plots using the other run_number as argument. 
 
 
 ## 2. Data extraction
