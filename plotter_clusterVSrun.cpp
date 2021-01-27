@@ -1,26 +1,24 @@
 // Riccardo Ricci
 // January 8th, 2021
-//Updated January 14th, 2021
+// Updated January 26th, 2021
 
 
 
 // ::::::::::::::::::::::::::::: CLUSTERSIZE VS RUN PLOTTER ::::::::::::::::::::::::::::::::::://
-// the following macro builds a simple TGraph by taking clusterVSrun.csv file, which is the output of clusterVSrun.cpp
+// the following macro builds a simple TGraph by taking some clusterVSrun.csv file, which is the output of clusterVSrun.cpp
 // to execute the macro, type:
-            //  .x macro_name.cpp   //
-
-// there are some problems when declaring it as a function that i haven't overcome yet...
-// that's a problem to solve because it implies a redefinition of variables (so an error) and i must restart root each time i use it...
-
-
-
+            //  .L plotter_clusterVSrun.cpp   //
+// and then execute the function 
+			//  plotter_clusterVSrun()			
+// or the corresponding overload
+			//  plotter_clusterVSrun(run1, run2);
 
 
-void plotter_clusterVSrun(){// Tgraph setting
+void plotter_clusterVSrun(){
 
-    
     // :::::::::::::::::::::::   GRAPH   :::::::::::::::::::::::::: //
-    TGraph *g = new TGraph("./cluster/ClusterSizeAssociatedVSrun.csv", "%lg %lg", ","); //this format applies to .csv files. // %*lg formatting option tells to avoid that certain column.
+    TGraph *g = new TGraph("./cluster/ClusterSizeAssociatedVSrun.csv", "%lg %lg", ","); 
+	//this format applies to .csv files. // %*lg formatting option tells to avoid that certain column eventually.
 TCanvas *canvas = new TCanvas;
 g->SetTitle("ClusterSize VS RunNumber");
 canvas->SetGrid();
@@ -56,38 +54,26 @@ TAxis *Y = g->GetYaxis();
     Y->SetTitleOffset(1.3);
     Y->SetLabelSize(0.03);
 
-    //change X labels ?
-    ////.....
-   
 g->Draw("AP");
     
    
     
 // :::::::::::::::::::::::   LEGEND   :::::::::::::::::::::::::: //
-//canvas->BuildLegend();  //automatically build legend in some empty space
 TLegend *legend = new TLegend(0.48,0.8,0.88,0.88);
-   //legend->SetHeader("The Legend Title","C"); // option "C" allows to center the header
     legend->AddEntry(g);
-   //legend->AddEntry("f1","Function abs(#frac{sin(x)}{x})","l");
-   //legend->AddEntry("gr","Graph with error bars","lep");
     legend->Draw();
 
-    
     // and finally...
 canvas->Draw();
     canvas->Print("./cluster/ClusterVSrun.png");
-
-// e niente, qua si tratta di proseguire
-// ora sarebbe interessante trovare i run di giugno
-};
+	}; 
 
 
 
 
-///overload
 
 
-
+// th following is a simple overload which implements 2 run as lower and upper values for the run interval/period.
 void plotter_clusterVSrun(int run1, int run2){// Tgraph setting
 
     
@@ -134,19 +120,12 @@ g->Draw("AP");
    
     
 // :::::::::::::::::::::::   LEGEND   :::::::::::::::::::::::::: //
-//canvas->BuildLegend();  //automatically build legend in some empty space
 TLegend *legend = new TLegend(0.48,0.8,0.88,0.88);
-   //legend->SetHeader("The Legend Title","C"); // option "C" allows to center the header
     legend->AddEntry(g);
-   //legend->AddEntry("f1","Function abs(#frac{sin(x)}{x})","l");
-   //legend->AddEntry("gr","Graph with error bars","lep");
     legend->Draw();
 
     
     // and finally...
 canvas->Draw();
     canvas->Print("./cluster/ClusterVSrun.png");
-
-// e niente, qua si tratta di proseguire
-// ora sarebbe interessante trovare i run di giugno
-}
+} // overload END
