@@ -73,7 +73,7 @@ canvas->Draw();
 
 
 
-// th following is a simple overload which implements 2 run as lower and upper values for the run interval/period.
+// the following is a simple overload which implements 2 run as lower and upper values for the run interval/period.
 void plotter_clusterVSrun(int run1, int run2){// Tgraph setting
 
     
@@ -111,10 +111,6 @@ TAxis *Y = g->GetYaxis();
     Y->SetNdivisions(20);
     Y->SetTitleOffset(1.3);
     Y->SetLabelSize(0.03);
-
-    //change X labels ?
-    ////.....
-   
 g->Draw("AP");
     
    
@@ -128,4 +124,4 @@ TLegend *legend = new TLegend(0.48,0.8,0.88,0.88);
     // and finally...
 canvas->Draw();
     canvas->Print("./cluster/ClusterVSrun.png");
-} // overload END
+} // overload-END
