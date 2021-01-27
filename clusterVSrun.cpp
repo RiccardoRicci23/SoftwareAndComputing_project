@@ -35,11 +35,11 @@ vector <double> ClusterMean;
     vector <string> clusterVSrun(const char *dirname = "./_data_/August_BENT/", const char *ext = ".root"){
     cout << "Looking for .root files..." << endl;
     //store array of .root filenames
-    vector <string> run_number;                    //here i will save the names of my root file for many different uses
+    vector <string> run_number;             //here i will save the names of my root file for many different uses
     TSystemDirectory dir(dirname, dirname); //directory, but in ROOT language
     TList *files = dir.GetListOfFiles();        
 // :::::::::::::  ::::::::::::::::::::::: :::::::::::::::::::::::: //
-          
+	
         
     
         
@@ -124,8 +124,7 @@ canvas->Draw();
                 
                 
                 
-                //closing the annidated loops-ifs blocks
-                
+                //closing the annidated loops-ifs blocks                
             }//end 2nd if
         }//end while
     }// end 1st if 
@@ -149,9 +148,12 @@ canvas->Draw();
         
         
     delete files;
-    return run_number;}
+    return run_number;
+	
+	
+	
+	}
 
 
-//other functions
 
 
