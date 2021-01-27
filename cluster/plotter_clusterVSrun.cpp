@@ -17,7 +17,7 @@
 void plotter_clusterVSrun(){
 
     // :::::::::::::::::::::::   GRAPH   :::::::::::::::::::::::::: //
-    TGraph *g = new TGraph("./cluster/ClusterSizeAssociatedVSrun.csv", "%lg %lg", ","); 
+    TGraph *g = new TGraph("../cluster/ClusterSizeAssociatedVSrun.csv", "%lg %lg", ","); 
 	//this format applies to .csv files. // %*lg formatting option tells to avoid that certain column eventually.
 TCanvas *canvas = new TCanvas;
 g->SetTitle("ClusterSize VS RunNumber");
@@ -65,7 +65,7 @@ TLegend *legend = new TLegend(0.48,0.8,0.88,0.88);
 
     // and finally...
 canvas->Draw();
-    canvas->Print("./cluster/ClusterVSrun.png");
+    canvas->Print("../cluster/ClusterVSrun.png");
 	}; 
 
 
@@ -78,7 +78,7 @@ void plotter_clusterVSrun(int run1, int run2){// Tgraph setting
 
     
     // :::::::::::::::::::::::   GRAPH   :::::::::::::::::::::::::: //
-TGraph *g = new TGraph("./cluster/ClusterSizeAssociatedVSrun.csv", "%lg %lg %*lg", ","); //this format applies to .csv files. // %*lg formatting option tells to avoid that certain column. TCanvas *canvas = new TCanvas;
+TGraph *g = new TGraph("../cluster/ClusterSizeAssociatedVSrun.csv", "%lg %lg %*lg", ","); //this format applies to .csv files. // %*lg formatting option tells to avoid that certain column. TCanvas *canvas = new TCanvas;
 g->SetTitle("ClusterSize VS RunNumber");
 TCanvas *canvas = new TCanvas;
 canvas->SetGrid();
@@ -123,5 +123,5 @@ TLegend *legend = new TLegend(0.48,0.8,0.88,0.88);
     
     // and finally...
 canvas->Draw();
-    canvas->Print("./cluster/ClusterVSrun.png");
+    canvas->Print("../cluster/ClusterVSrun.png");
 } // overload-END

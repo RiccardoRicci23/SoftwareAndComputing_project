@@ -32,7 +32,7 @@ vector <double> ClusterMean;
 
 
 // :::::::::::::  FIRST DEFINITIONSSSS :::::::::::::::::::::::: //
-    vector <string> clusterVSrun(const char *dirname = "./_data_/August_BENT/", const char *ext = ".root"){
+    vector <string> clusterVSrun(const char *dirname = "../_data_/August_BENT/", const char *ext = ".root"){
     cout << "Looking for .root files..." << endl;
     //store array of .root filenames
     vector <string> run_number;             //here i will save the names of my root file for many different uses
@@ -62,7 +62,7 @@ vector <double> ClusterMean;
 
                 
                 //these lines show the .root file(s) content
-                file_to_open = new TFile(dirname+fname);   // dirname+fname = "./path/to/your_file.root"
+                file_to_open = new TFile(dirname+fname);   // dirname+fname = "../path/to/your_file.root"
                 
                 // file_to_open->ls(); // wanna see the folder content? uncomment this
                 file_to_open->cd("AnalysisDUT;1/ALPIDE_3;1"); // for test August data
@@ -111,9 +111,9 @@ CS->Draw();
 canvas->Draw();
            
              
-    //print canvas as .png file in "./cluster/" folder
+    //print canvas as .png file in "../cluster/" folder
     TString png = ".png";
-    TString path = "./cluster/";
+    TString path = "../cluster/";
 	TString short_name = buffer_string; // "#run name"
     TString canvas_file = path + short_name + png;
             canvas->Print(canvas_file);
@@ -138,7 +138,7 @@ canvas->Draw();
         
     
 // ::: runs to be written in a .csv file, to be read by a TGraph ::: //
-     ofstream of("./cluster/ClusterSizeAssociatedVSrun.csv"); // output stream to new.csv file
+     ofstream of("../cluster/ClusterSizeAssociatedVSrun.csv"); // output stream to new.csv file
          int n = run_number.size(); // #runs  
             cout << "n_run_numbers: "<< n << endl;
          for (int i = 0; i < n; ++i)
@@ -149,10 +149,8 @@ canvas->Draw();
         
     delete files;
     return run_number;
-	
-	
-	
-	}
+
+	}// END
 
 
 
