@@ -16,7 +16,7 @@ void plotter_efficiencyVSrun(){
     // TGraphAsymmErrors (const char *filename, const char *format="%lg %lg %lg %lg %lg %lg", Option_t *option="")
     // :::::::::::::::::::::::   GRAPH   :::::::::::::::::::::::::: //
 
-	TGraphErrors *g = new TGraphErrors("./efficiency/TotalEfficiencyVSrun.csv", "%lg %lg %lg %lg", ","); //this format applies to .csv files. // %*lg formatting option tells to avoid that certain column.
+	TGraphErrors *g = new TGraphErrors("../efficiency/TotalEfficiencyVSrun.csv", "%lg %lg %lg %lg", ","); //this format applies to .csv files. // %*lg formatting option tells to avoid that certain column.
 	TCanvas *canvas = new TCanvas;
 	g->SetTitle("TotalEfficiency VS RunNumber");
 	canvas->SetGrid();
@@ -71,7 +71,7 @@ void plotter_efficiencyVSrun(){
 
     // "and finally..."
 canvas->Draw();
-canvas->Print("./efficiency/TotalEfficiencyVSrun.png");
+canvas->Print("../efficiency/TotalEfficiencyVSrun.png");
 };
 
 
@@ -89,7 +89,7 @@ void plotter_TotalEfficiencyVSrun(int run1, int run2){// Tgraph setting
     // TGraphAsymmErrors (const char *filename, const char *format="%lg %lg %lg %lg %lg %lg", Option_t *option="")
     // :::::::::::::::::::::::   GRAPH   :::::::::::::::::::::::::: //
 
-	TGraphErrors *g = new TGraphErrors("./efficiency/TotalEfficiencyVSrun.csv", "%lg %lg %lg %lg", ","); //this format applies to .csv files. // %*lg formatting option tells to avoid that certain column.
+	TGraphErrors *g = new TGraphErrors("../efficiency/TotalEfficiencyVSrun.csv", "%lg %lg %lg %lg", ","); //this format applies to .csv files. // %*lg formatting option tells to avoid that certain column.
 	TCanvas *canvas = new TCanvas;
 	g->SetTitle("TotalEfficiency VS RunNumber");
 	canvas->SetGrid();
@@ -143,5 +143,5 @@ void plotter_TotalEfficiencyVSrun(int run1, int run2){// Tgraph setting
     
     // "and finally..."
 canvas->Draw();
-canvas->Print("./efficiency/TotalEfficiencyVSrun.png");
+canvas->Print("../efficiency/TotalEfficiencyVSrun.png");
 }// end of the overload
