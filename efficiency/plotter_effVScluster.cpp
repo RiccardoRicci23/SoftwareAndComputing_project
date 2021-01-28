@@ -62,7 +62,7 @@ void plotter_TotalEfficiencyVSClusterSize(){// Tgraph setting
     
 	// :::::::::::::::::::::::   LEGEND   :::::::::::::::::::::::::: //
 	//canvas->BuildLegend();  //automatically build legend in some empty space
-	TLegend *legend = new TLegend(0.48,0.8,0.88,0.88);
+	TLegend *legend = new TLegend(0.48,0.4,0.8,0.48);
 		legend->AddEntry(g);
 		legend->Draw();
 
@@ -131,7 +131,7 @@ void plotter_TotalEfficiencyVSClusterSize(double clust1, double clust2){// Tgrap
     
 	// :::::::::::::::::::::::   LEGEND   :::::::::::::::::::::::::: //
 	//canvas->BuildLegend();  //automatically build legend in some empty space
-	TLegend *legend = new TLegend(0.48,0.8,0.88,0.88);
+	TLegend *legend = new TLegend(0.48,0.4,0.8,0.48);
 		legend->AddEntry(g);
 		legend->Draw();
 

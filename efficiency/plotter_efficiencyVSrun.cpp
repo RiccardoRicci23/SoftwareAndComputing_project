@@ -62,7 +62,7 @@ void plotter_efficiencyVSrun(){
     
 // :::::::::::::::::::::::   LEGEND   :::::::::::::::::::::::::: //
 //canvas->BuildLegend();  //automatically build legend in some empty space
-	TLegend *legend = new TLegend(0.48,0.8,0.88,0.88);
+	TLegend *legend = new TLegend(0.48,0.4,0.8,0.48);
 		//legend->SetHeader("The Legend Title","C"); // option "C" allows to center the header
 		legend->AddEntry(g);
 		//legend->AddEntry("f1","Function abs(#frac{sin(x)}{x})","l");
@@ -135,7 +135,7 @@ void plotter_TotalEfficiencyVSrun(int run1, int run2){// Tgraph setting
     
 	// :::::::::::::::::::::::   LEGEND   :::::::::::::::::::::::::: //
 	//canvas->BuildLegend();  //automatically build legend in some empty space
-	TLegend *legend = new TLegend(0.48,0.8,0.88,0.88);
+	TLegend *legend = new TLegend(0.48,0.4,0.88,0.48);
 		//legend->SetHeader("The Legend Title","C"); // option "C" allows to center the header
 		legend->AddEntry(g);
 		legend->Draw();
