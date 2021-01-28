@@ -9,17 +9,15 @@
 
 
 
-
-// vector<TCanvas> *BigCanva; //array of canvas
-vector <double> efficiency_vector; // globally declared vector in which i will save value of eTotalEfficiency
-vector <double> eff_err_up; // globally declared vector in which i will save value of eTotalEfficiency
-vector <double> eff_err_low;
-
-
-
-// :::::::::::::  FIRST DEFINITIONSSSS :::::::::::::::::::::::: //
-    vector <string> efficiencyVSrun(const char *dirname = "../_data_/August_BENT/", const char *ext = ".root"){
-    cout << "Looking for .root files..." << endl;
+vector <string> efficiencyVSrun(const char *dirname = "../_data_/August_BENT/", const char *ext = ".root"){
+cout << "Looking for .root files..." << endl;
+	
+	
+	// vector<TCanvas> *BigCanva; //array of canvas
+	vector <double> efficiency_vector;
+	vector <double> eff_err_up; // globally declared vector in which i will save value of eTotalEfficiency
+	vector <double> eff_err_low;
+	
     //store array of .root filenames
     TEfficiency *eff_run = new TEfficiency;
     vector <string> run_number;  
@@ -58,32 +56,21 @@ vector <double> eff_err_low;
 
              //:: INTERNAL-LOOP BLOCK :://
 			 
-//::::::::::: EFFICIENCY EXTRACTION ::::::::::::::::::::::: //
-//define some pointers for the 2 histos
-TEfficiency *Eff;
-//passing clustersSizeAssociated,clustersSizeAssociatedNormalized to the respective pointers
+	//::::::::::: EFFICIENCY EXTRACTION ::::::::::::::::::::::: //
+	//define some pointers for the 2 histos
+	TEfficiency *Eff;
+	//passing clustersSizeAssociated,clustersSizeAssociatedNormalized to the respective pointers
     gDirectory->GetObject("eTotalEfficiency", Eff);             
-    cout << Eff->GetEfficiency(1) << endl;
-    
                 efficiency_vector.push_back(Eff->GetEfficiency(1));    // Eff value
                 eff_err_up.push_back(Eff->GetEfficiencyErrorUp(1));    // Eff value
                 eff_err_low.push_back(Eff->GetEfficiencyErrorLow(1));    // Eff value
                 // fit legend
                 TLegend *legend = new TLegend(0.48,0.8,0.88,0.88);
-   //legend->SetHeader("The Legend Title","C"); // option "C" allows to center the header
-    //legend->AddEntry(landau_fit);
-    //legend->Draw();
-      //canvas->BuildLegend();          
-                
-                
-                //Finally plot please
+
     
     canvas = new TCanvas ("c1", "eTotalEfficiency", 200, 10, 750, 500);
-    //canvas->cd(1);
     Eff->Draw();            
     canvas->Draw();
-            //gStyle->SetOptFit(1011); // to see fit parameters on the legend
-   
              
       //print canvas as .png file in ../cluster/ folder
     TString png = ".png";
@@ -97,11 +84,12 @@ TEfficiency *Eff;
  //::::::::::: EFFICIENCY EXTRACTION ::::  END  ::::::::::::::::::: //
 
                 
-            }
-        }
-    } else {
-        cout << "No .root files found. Change the path in rnAnalysis.cc" << endl;
-    }
+            }// END INTERNAL IF
+        }// END WHILE
+    } // END IF
+	else {
+        cout << "No .root files found. Change the path in efficiencyVSrun.cc" << endl;
+    }// END ELSE
     
 
     
