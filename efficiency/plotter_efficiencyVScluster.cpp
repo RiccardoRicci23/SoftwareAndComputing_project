@@ -9,12 +9,25 @@
             //  .x macro_name.cpp   //
 
 
-void plotter_TotalEfficiencyVSClusterSize(){// Tgraph setting
+#include "../cluster/clusterVSrun.cpp"
+#include "../efficiency/efficiencyVSrun.cpp"
 
+
+void plotter_efficiencyVScluster(){// Tgraph setting
+	//eventually:
     // TGraphAsymmErrors (const char *filename, const char *format="%lg %lg %lg %lg %lg %lg", Option_t *option="")
     // :::::::::::::::::::::::   GRAPH   :::::::::::::::::::::::::: //
 
-	TGraphErrors *g = new TGraphErrors("../eff_vs_cluster/eff_vs_cluster.csv", "%lg %lg %lg %lg", ","); //this format applies to .csv files. // %*lg formatting option tells to avoid that certain column.
+	clusterVSrun();
+	efficiencyVSrun();
+
+	ofstream of("../efficiency/efficiencyVScluster.csv");
+		int size_MPV = MPV.size();
+		for(int i = 0; i < size_MPV; ++i)
+			{of << MPV[i] << "," << efficiency_vector[i] << endl;}
+	
+
+	TGraph *g = new TGraph("..//efficiency/efficiencyVScluster.csv", "%lg %lg", ","); //this format applies to .csv files. // %*lg formatting option tells to avoid that certain column.
 	TCanvas *canvas = new TCanvas;
 	g->SetTitle("TotalEfficiency VS ClusterSize");
 	canvas->SetGrid();
@@ -69,7 +82,7 @@ void plotter_TotalEfficiencyVSClusterSize(){// Tgraph setting
     
     // "and finally..."
 canvas->Draw();
-canvas->Print("../eff_vs_cluster/TotalEfficiencyVSClusterSize.png");
+canvas->Print("../efficiency/efficiencyVScluster.png");
 };
 
 
@@ -82,12 +95,12 @@ canvas->Print("../eff_vs_cluster/TotalEfficiencyVSClusterSize.png");
 //////////////////////////////////////
 
 
-void plotter_TotalEfficiencyVSClusterSize(double clust1, double clust2){// Tgraph setting
+void plotter_efficiencyVScluster(double clust1, double clust2){// Tgraph setting
 
     // TGraphAsymmErrors (const char *filename, const char *format="%lg %lg %lg %lg %lg %lg", Option_t *option="")
     // :::::::::::::::::::::::   GRAPH   :::::::::::::::::::::::::: //
 
-	TGraphErrors *g = new TGraphErrors("../eff_vs_cluster/eff_vs_cluster.csv", "%lg %lg %lg %lg", ","); //this format applies to .csv files. // %*lg formatting option tells to avoid that certain column.
+	TGraph *g = new TGraph("../efficiency/efficiencyVScluster.csv", "%lg %lg", ","); //this format applies to .csv files. // %*lg formatting option tells to avoid that certain column.
 	TCanvas *canvas = new TCanvas;
 	g->SetTitle("TotalEfficiency VS ClusterSize");
 	canvas->SetGrid();
@@ -138,5 +151,5 @@ void plotter_TotalEfficiencyVSClusterSize(double clust1, double clust2){// Tgrap
     
     // "and finally..."
 canvas->Draw();
-canvas->Print("../eff_vs_cluster/TotalEfficiencyVSClusterSize.png");
+canvas->Print("../efficiency/efficiencyVScluster.png");
 }

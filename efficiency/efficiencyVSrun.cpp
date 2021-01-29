@@ -7,14 +7,14 @@
     // where dirname = ./path/to/file of interest
     // ext is the selected file extension - .root in the following case
 
-
+vector <double> efficiency_vector;
 
 vector <string> efficiencyVSrun(const char *dirname = "../_data_/August_BENT/", const char *ext = ".root"){
 cout << "Looking for .root files..." << endl;
 	
 	
-	// vector<TCanvas> *BigCanva; //array of canvas
-	vector <double> efficiency_vector;
+
+
 	vector <double> eff_err_up; // globally declared vector in which i will save value of eTotalEfficiency
 	vector <double> eff_err_low;
 	

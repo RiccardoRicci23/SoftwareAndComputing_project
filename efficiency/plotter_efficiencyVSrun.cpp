@@ -8,8 +8,8 @@
 // to execute the macro, type:
             //  .x macro_name.cpp   //
 
-
-
+#include "../cluster/clusterVSrun.cpp"
+#include "../efficiency/efficiencyVSrun.cpp"
 
 
 void plotter_efficiencyVSrun(){
