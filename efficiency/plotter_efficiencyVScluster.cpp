@@ -49,7 +49,7 @@ void plotter_efficiencyVScluster(){// Tgraph setting
 		X->SetTitleOffset(1.4);
 		X->SetTitleSize(0.04);
 		X->CenterTitle(); 
-		X->SetNdivisions(5);
+		X->SetNdivisions(size_MPV);
 		X->SetTitleOffset(1.3);
 		X->SetLabelSize(0.03);
 
@@ -105,7 +105,6 @@ void plotter_efficiencyVScluster(double clust1, double clust2){// Tgraph setting
 	g->SetTitle("TotalEfficiency VS ClusterSize");
 	canvas->SetGrid();
 	canvas->Draw();
-
 
 
     //markers
