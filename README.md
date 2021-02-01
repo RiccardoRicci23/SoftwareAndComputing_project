@@ -1,10 +1,11 @@
 # SoftwareAndComputing_project
 
-This framework starts from a little group of macros i wrote to perform the analysis of ALPIDE-bent chips. They are bulupgrade of the ALICE Inner Tracking System (ITS3) during CERN LHC Long Shutdown 3 (LS3). 
+In this framework i'm showing part of my Master Thesis work. 
+The core of this work is a little group of macros i wrote to perform the analysis of ALPIDE-bent chips, which are under study for the upgrade of the ALICE Inner Tracking System (ITS3), during CERN LHC Long Shutdown 3 (LS3). 
 
 The aim is to analyse the output .root files coming from the Corryvreckan program - used to process/reinterpret raw data coming from the August testbeam at DESY (inserire qualcosa dalla TWIKI qui magari). 
 
-# The Setup
+# Short Setup description
 
 The experimental setup is made of 3 ALPIDE flat chips + 1 ALPIDE BENT chip + 3 ALPIDE flat chips, where the central BENT chip in the middle is called Detector Under Test (DUT). 
 
