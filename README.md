@@ -12,17 +12,30 @@ The adjustable position on the y-axis allowed to center the beam direction on di
 
 
 ////// IMAGE WITH THE SETUP & ALPIDE PHOTO/S
+Each run gives a .raw data file as output. 
+A first analysis of each single .raw file has been performed using a specific software, Corryvreckan. 
+
 
 
 # The program
-The aim is to analyse the output .root files coming from the Corryvreckan program - used to process/reinterpret raw data coming from the August testbeam. In particular, some macros to extract/analyse data from multiple files were needed. 
-Large part of the macros originally comes from SWAN, where i have written them as a first step: so that also some notebooks are present in this work as example. 
+The final aim is to analyse the output .root files coming from the Corryvreckan program to study the August testbeam. 
+In particular, some macros to extract/analyse data from many runs were needed, with the capability to extrat crucial quantities and compare them among different runs or within a certain run/time range. 
+To perform that, i wrote first a simple macro-block in ROOT C++. This is the "core" of all the others, because it allows to open N .root files inside the folder of interest and looping every type of operation over the file set. 
+
+::::
+ CONTINUE HERE
+::::
+
+Large part of the macros originally comes from SWAN, where i have written them as a first step: so that also some notebooks are present in this work as an example. 
 
 The framework consists of 3 main structures/phases:
 
 - run checking
 - data extraction
 - data analysis 
+
+:::::: qua potrei dire qualcosa sui vari problemi di I/O ::::::
+
 
 
 ## 1. Run checking: magari dire come sono definite queste quantità...
