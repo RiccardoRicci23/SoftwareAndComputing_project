@@ -37,7 +37,8 @@ void run_checker(TString run_name){
 
 open_prealignment(run_name);
 // ora qui posso fare ogni genere di operazione perché il file ormai è aperto!
-//mi interessa capire se 
+
+open_alignment(run_name);
 
 
 }
