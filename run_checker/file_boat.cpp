@@ -5,16 +5,14 @@
 // ROOT I/O tasks and open files/store array of files contained in the selected folder
 
 
-void open_prealignment(TString dirname, const char *ext = ".root";){
-        dirname = "./_data_/"; 
+void open_prealignment(const char* dirname = "./_data_/August_BENT/", const char *ext = ".root"){
+        
 		// this vector strings will contain the names of the .root file of interest
 		// the use of vector string allows for further modifications in the future evetually
 		vector <string> run_number;
 		
 		TSystemDirectory dir(dirname, dirname); //directory, but in ROOT language
 		TList *files = dir.GetListOfFiles();
-		TCanvas *canvas;
-
 
 
 //:::::::::::::::::   if-while external block :::::::::::::::::::: //
@@ -41,12 +39,13 @@ void open_prealignment(TString dirname, const char *ext = ".root";){
 				buffer_string.replace(0,16,""); // PREALIGNMENT
 				buffer_string.replace(9,22,""); // ALL
                 run_number.push_back(buffer_string);
-					cout << "run number is: " << run_number << endl; 
+
 
                 //OPEN .root file then:
                 file_to_open = new TFile(dirname+fname);
                 // file_to_open->ls(); // wanna see the folder content? uncomment this line            
                 cout << "prealignment is OK" << endl;
+
 
 			//////////////
 			//
@@ -62,6 +61,9 @@ void open_prealignment(TString dirname, const char *ext = ".root";){
 		
 		
 	}//end external if
+
+
+for(auto x:run_number) cout << x << endl;
 
 
 }//end function
