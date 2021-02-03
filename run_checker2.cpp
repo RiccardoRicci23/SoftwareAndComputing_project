@@ -33,12 +33,15 @@
 
 #include "./run_checker/file_boat.cpp"
 
-void run_checker(TString run_name){
+void run_checker(){
 
-open_prealignment(run_name);
-// ora qui posso fare ogni genere di operazione perché il file ormai è aperto!
+open_prealignment();
 
-open_alignment(run_name);
+
+
+
+
+//open_alignment();
 
 
 }

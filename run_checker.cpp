@@ -86,10 +86,9 @@ void run_checker(TString run_name){
                 file_to_open = new TFile(dirname+fname);
                 // file_to_open->ls(); // wanna see the folder content? uncomment this line            
                 cout << "prealignment is OK" << endl;
-                
+                gFile->cd("Prealignment/ALPIDE_3");
                 
                 // extract correlations
-                gFile->cd("Prealignment/ALPIDE_3");
                 TH1F *correlationX;
                     gDirectory->GetObject("correlationX",correlationX);
                 TH1F *correlationY;
