@@ -35,7 +35,7 @@
 
 void run_checker(){
 
-open_prealignment();
+open_alignment();
 
 
 
