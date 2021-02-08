@@ -239,7 +239,7 @@ void open_analysis(const char* dirname = "./_data_/August_BENT/", const char *ex
                 file_to_open->ls(); // wanna see the folder content? uncomment this line            
                 
 				
-/* 				{gFile->cd("AnalysisDUT;1/ALPIDE_3;1");
+{gFile->cd("AnalysisDUT;1/ALPIDE_3;1");
                 TH1F *residualsX;
                 TH1F *residualsY;
                 //assing residualsX,Y to the respective pointers
@@ -297,8 +297,8 @@ void open_analysis(const char* dirname = "./_data_/August_BENT/", const char *ex
 				
                 //::::::::::: DETECTOR EFFICIENCY MAP EXTRACTION ::::::::::::::::::::::: //
                 TProfile2D *chipEfficiencyMap_trackPos;
-                gDirectory->GetObject("chipEfficiencyMap_trackPos", chipEfficiencyMap_trackPos);
-                canvas = new TCanvas ("c1", "chipEfficiencyMap_trackPos", 200, 10, 750, 500);
+                gDirectory->GetObject("chipEfficiencyMap_trackPos_TProfile", chipEfficiencyMap_trackPos);
+                canvas = new TCanvas ("c1", "ALPIDE_3 chipEfficiency Map", 200, 10, 750, 500);
                     canvas->SetRightMargin(0.09);
                     canvas->SetLeftMargin(0.15);
                     canvas->SetBottomMargin(0.15);
@@ -308,7 +308,7 @@ void open_analysis(const char* dirname = "./_data_/August_BENT/", const char *ex
                     chipEfficiencyMap_trackPos->GetXaxis()->SetTitleSize(0.05);
                     chipEfficiencyMap_trackPos->GetYaxis()->SetTitleSize(0.05);
 					canvas->Print("./run_checker/run"+buffer+"_chipEfficiencyMap_trackPos.png");
-				}//block end */
+				}//block end 
 								
 					
 			} //end internal if
