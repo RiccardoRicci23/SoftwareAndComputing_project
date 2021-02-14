@@ -8,7 +8,7 @@
  :::::::::::::::
  Collection of 3 functions devoted to ROOT I/O tasks and open files/store array of files contained 
  in the selected folder.
- General structure: 
+GENERAL STRUCTURE: 
     1. "if" loop to scan inside the folder searching for .root files
         2. internal "while" cycle to loop over each .root file
             3. a) sub-internal "if" to select only certain files depending on their name.  
@@ -165,7 +165,8 @@ for(auto x:run_number) cout << x << endl;
 
 
 
-////////////////////   ALIGNMENT-START  ///////////////////////////
+/*////////////////////   ALIGNMENT-START  ///////////////////////////
+This function extract some quantities/plots from the alignment .root files.*/
 void open_alignment(const char* dirname = "./_data_/August_BENT/", const char *ext = ".root"){
         
 		// this vector strings will contain the names of the .root file of interest
@@ -190,7 +191,6 @@ void open_alignment(const char* dirname = "./_data_/August_BENT/", const char *e
             cout << "Looking for .root files..." << endl;
 				
 // from now on, there are 3 different blocks per each filename & filetype to be open/analyzed	
-
             if (!file->IsDirectory() && fname.EndsWith(ext) && fname.BeginsWith("alignment") && fname.BeginsWith("pre")==false){
 				// extract only run number and ADD it to run_number vector
                 // cut only part of interest of the name
@@ -205,10 +205,16 @@ void open_alignment(const char* dirname = "./_data_/August_BENT/", const char *e
 				
                 //file_to_open->ls(); // wanna see the folder content? uncomment this line            
                 
-				//not implemented yet
-				//{gFile->cd("Prealignment/ALPIDE_3");
-				//cout << "Alignent is OK" << endl; 
-				//}
+				{gFile->cd("Prealignment/ALPIDE_3/TrackingSpatial");
+				cout << "Alignment is OK" << endl; 
+				
+                // new instructions
+                TH1F *clustersPerTrack = new TH1F;
+                gDirectory->GetObject("clustersPerTrack", clustersPerTrack);
+
+
+
+                }
 								
 				
 					
