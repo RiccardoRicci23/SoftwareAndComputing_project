@@ -1,33 +1,58 @@
-// Riccardo Ricci
-// created in February 2nd, 2021
-
-// TheFileBoat 
-// Collection of 3 macros devoted to 
-// ROOT I/O tasks and open files/store array of files contained in the selected folder
+/* Riccardo Ricci
+ created in February 2nd, 2021
+ last update on February 20th, 2021
 
 
-// INSTRUCTIONS
-// launch these macros from the main ./ folder. 
+ :::::::::::::::
+ run_checher.cpp
+ :::::::::::::::
+ Collection of 3 functions devoted to ROOT I/O tasks and open files/store array of files contained 
+ in the selected folder.
+ General structure: 
+    1. "if" loop to scan inside the folder searching for .root files
+        2. internal "while" cycle to loop over each .root file
+            3. a) sub-internal "if" to select only certain files depending on their name.  
+               b) data extraction and plotting
 
-// 1. Open ROOT on your terminal
-// 2. ".L ./run_checker/file_boat.cpp"
-// 3. execute one of the three functions by calling them: "function()"
+
+ 
+
+
+:::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+ INSTRUCTIONS
+ launch these macros from the main ./ folder. 
+
+
+ 1. Open ROOT on your terminal
+ 2. ".L ./run_checker/run_checker.cpp" 
+ 3. execute one of the three functions by calling them: "function()"
+
+ It is analogously possible to use a ROOT C++ notebook (SWAN, Jupyter) and run the same commands
+ (use .L or the #include "./run_checker/run_checker.cpp" depending on your preferences)
+:::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::*/
 
 
 
-////////////////////   PREALIGNMENT-START  ///////////////////////////
+
+
+
+
+
+/* //////////////////   PREALIGNMENT-START  ////////////////////////
+ this function extracts 1D and 2D correlations wrt the X and Y coordinate 
+// on the chip surface */
 void open_prealignment(const char* dirname = "./_data_/August_BENT/", const char *ext = ".root"){
         
 		// this vector strings will contain the names of the .root file of interest
-		// the use of vector string allows for further modifications in the future evetually
+		// the use of vector string allows for further modifications in the future eventually
 		vector <string> run_number;
-		
-		TSystemDirectory dir(dirname, dirname); //directory, but in ROOT language
+		TSystemDirectory dir(dirname, dirname); 
 		TList *files = dir.GetListOfFiles();
 
 
-//:::::::::::::::::   if-while external block :::::::::::::::::::: //
-// inside this piece of code i will finaly make a list of .root files to open.
+
+/*:::::::::::::::::   if-while external block :::::::::::::::::::: //
+inside this piece of code i will finaly make a list of .root files to open scanning the folder ./_data_/ .*/
     if (files){
         TSystemFile *file;
         TString fname;
@@ -40,8 +65,7 @@ void open_prealignment(const char* dirname = "./_data_/August_BENT/", const char
             fname = file->GetName();
             cout << "Looking for .root files..." << endl;
 				
-// from now on, there are 3 different blocks per each filename & filetype to be open/analyzed	
-
+            // this block selects only the "prealignment_run**.root" files
             if (!file->IsDirectory() && fname.EndsWith(ext) && fname.BeginsWith("prealignment")){
 				// extract only run number and ADD it to run_number vector
 				string run_number_ith = fname.Data();
@@ -55,11 +79,12 @@ void open_prealignment(const char* dirname = "./_data_/August_BENT/", const char
                 // file_to_open->ls(); // wanna see the folder content? uncomment this line            
                 
 				
+                // enter inside the file and extract then
 				{gFile->cd("Prealignment/ALPIDE_3");
 				cout << "prealignment is OK" << endl;
 
 
-// extract correlations
+                // extract correlations
                 TH1F *correlationX;
                     gDirectory->GetObject("correlationX",correlationX);
                 TH1F *correlationY;
@@ -92,7 +117,7 @@ void open_prealignment(const char* dirname = "./_data_/August_BENT/", const char
                 
                 canvas->cd(1);
                 correlationX->Fit("gaus");
-                //correlationX->GetXaxis()->SetRangeUser(-9,-6);
+                //correlationX->GetXaxis()->SetRangeUser(-9,-6); //uncomment and modify to use it
                 correlationX->GetXaxis()->SetLabelSize(0.05);
                 correlationX->GetYaxis()->SetLabelSize(0.05);
                 gStyle->SetOptFit(1011); // to see fit parameters on the legend
@@ -103,7 +128,7 @@ void open_prealignment(const char* dirname = "./_data_/August_BENT/", const char
                 gStyle->SetOptFit(1011); // to see fit parameters on the legend
                 correlationY->GetXaxis()->SetLabelSize(0.05);
                 correlationY->GetYaxis()->SetLabelSize(0.05);
-                //correlationY->GetXaxis()->SetRangeUser(-4,2);
+                //correlationY->GetXaxis()->SetRangeUser(-4,2); //uncomment and modify to use it
                 correlationY->Fit("gaus");
                 correlationY->Draw();
                 canvas->cd(2)->Draw();
@@ -124,29 +149,29 @@ void open_prealignment(const char* dirname = "./_data_/August_BENT/", const char
                 canvas->Print("./run_checker/run"+buffer+"_prealignment_DUTcorrelations.png");}           		
 	
 			} //end internal if
-			// ELSE IN CASE OF EMPTY FOLDER????
-			
+			else { cout << "there are not prealignment.root files inside ./_data_/ folder, please check. Quitting..." << endl;
+                    return 0;}// end else
+
 		}//end while
 	}//end external if
 for(auto x:run_number) cout << x << endl;
-
-
 }
 ////////////////////   PREALIGNMENT-END  ///////////////////////////
-//
-//
-//
-//
-//
-//
+
+
+
+
+
+
+
+
 ////////////////////   ALIGNMENT-START  ///////////////////////////
 void open_alignment(const char* dirname = "./_data_/August_BENT/", const char *ext = ".root"){
         
 		// this vector strings will contain the names of the .root file of interest
 		// the use of vector string allows for further modifications in the future evetually
 		vector <string> run_number;
-		
-		TSystemDirectory dir(dirname, dirname); //directory, but in ROOT language
+		TSystemDirectory dir(dirname, dirname); 
 		TList *files = dir.GetListOfFiles();
 
 
@@ -168,6 +193,7 @@ void open_alignment(const char* dirname = "./_data_/August_BENT/", const char *e
 
             if (!file->IsDirectory() && fname.EndsWith(ext) && fname.BeginsWith("alignment") && fname.BeginsWith("pre")==false){
 				// extract only run number and ADD it to run_number vector
+                // cut only part of interest of the name
 				string run_number_ith = fname.Data();
 				run_number_ith.replace(0,13,""); // ALIGNMENT
 				run_number_ith.replace(9,22,""); // ALL
@@ -187,25 +213,32 @@ void open_alignment(const char* dirname = "./_data_/August_BENT/", const char *e
 				
 					
 			} //end internal if
+
+        else { cout << "there are not alignment.root files inside ./_data_/ folder, please check. Quitting..." << endl;
+                    return 0;}// end else
 		}//end while
 	}//end external if
 	cout << endl << "checked runs are: " << endl;
 for(auto x:run_number) cout << x << endl;
 } // end function
 ////////////////////   ALIGNMENT-END  ///////////////////////////
-//
-//
-//
-//
-//
-//
+
+
+
+
+
+
+
+
+
+
 ////////////////////   ANALYSIS-START  ///////////////////////////
 void open_analysis(const char* dirname = "./_data_/August_BENT/", const char *ext = ".root"){
         
 		// this vector strings will contain the names of the .root file of interest
 		// the use of vector string allows for further modifications in the future evetually
 		vector <string> run_number;
-		TSystemDirectory dir(dirname, dirname); //directory, but in ROOT language
+		TSystemDirectory dir(dirname, dirname); 
 		TList *files = dir.GetListOfFiles();
 
 
@@ -238,11 +271,10 @@ void open_analysis(const char* dirname = "./_data_/August_BENT/", const char *ex
                 file_to_open = new TFile(dirname+fname);
                 file_to_open->ls(); // wanna see the folder content? uncomment this line            
                 
-				
-{gFile->cd("AnalysisDUT;1/ALPIDE_3;1");
+				// instructions block
+                {gFile->cd("AnalysisDUT;1/ALPIDE_3;1");
                 TH1F *residualsX;
                 TH1F *residualsY;
-                //assing residualsX,Y to the respective pointers
                     gDirectory->GetObject("residualsX", residualsX);
                     gDirectory->GetObject("residualsY", residualsY);
 
@@ -311,10 +343,13 @@ void open_analysis(const char* dirname = "./_data_/August_BENT/", const char *ex
 				}//block end 
 								
 					
-			} //end internal if
+			    } //end internal if
+		    else { cout << "there are not analysis.root files inside ./_data_/ folder, please check. Quitting..." << endl;
+                    return 0;}// end else
+
 		}//end while
 	}//end external if
-	cout << endl << "checked runs are: " << endl;
+cout << endl << "checked runs are: " << endl;
 for(auto x:run_number) cout << x << endl;
 } // end function
 ////////////////////   ANALYSIS-END  ///////////////////////////
