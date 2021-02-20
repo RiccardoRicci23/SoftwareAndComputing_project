@@ -39,9 +39,12 @@ GENERAL STRUCTURE:
 
 
 /* //////////////////   PREALIGNMENT-START  ////////////////////////
- this function extracts 1D and 2D correlations wrt the X and Y coordinate 
-// on the chip surface */
-void open_prealignment(const char* dirname = "./_data_/August_BENT/", const char *ext = ".root"){
+ 1) This function opens prealignment.root files from the targeted folder passed as argument. 
+ 2) It loops over all the prealignment.root output files from different runs. 
+ 3) For each run, it extracts correlations plots for X and Y coordinate 
+    of the chip surface, and 2D correlation plots.*/
+
+void open_prealignment(const char* dirname = "./_data_/August_BENT/not_checked/", const char *ext = ".root"){
         
 		// this vector strings will contain the names of the .root file of interest
 		// the use of vector string allows for further modifications in the future eventually
@@ -52,7 +55,8 @@ void open_prealignment(const char* dirname = "./_data_/August_BENT/", const char
 
 
 /*:::::::::::::::::   if-while external block :::::::::::::::::::: //
-inside this piece of code i will finaly make a list of .root files to open scanning the folder ./_data_/ .*/
+inside this piece of code i will finaly make a list of .root files to open scanning the folder
+*/
     if (files){
         TSystemFile *file;
         TString fname;
@@ -117,7 +121,7 @@ inside this piece of code i will finaly make a list of .root files to open scann
                 
                 canvas->cd(1);
                 correlationX->Fit("gaus");
-                //correlationX->GetXaxis()->SetRangeUser(-9,-6); //uncomment and modify to use it
+                //correlationX->GetXaxis()->SetRangeUser(-9,-6); //uncomment and modify to use it eventually
                 correlationX->GetXaxis()->SetLabelSize(0.05);
                 correlationX->GetYaxis()->SetLabelSize(0.05);
                 gStyle->SetOptFit(1011); // to see fit parameters on the legend
@@ -128,7 +132,7 @@ inside this piece of code i will finaly make a list of .root files to open scann
                 gStyle->SetOptFit(1011); // to see fit parameters on the legend
                 correlationY->GetXaxis()->SetLabelSize(0.05);
                 correlationY->GetYaxis()->SetLabelSize(0.05);
-                //correlationY->GetXaxis()->SetRangeUser(-4,2); //uncomment and modify to use it
+                //correlationY->GetXaxis()->SetRangeUser(-4,2); //uncomment and modify to use it eventually
                 correlationY->Fit("gaus");
                 correlationY->Draw();
                 canvas->cd(2)->Draw();
@@ -164,14 +168,20 @@ for(auto x:run_number) cout << x << endl;
 
 
 
+/* //////////////////   ALIGNMENT-START  ////////////////////////
+ 1) This function opens alignment.root files from the targeted folder passed as argument. 
+ 2) It loops over all the alignment.root output files from different runs. 
+ 3) For each run, it extracts:
+        a) # reconstructed straight tracks per 6 required passage points on each reference chip
+            (namely ALPIDE_i, i = 1, ..., 6)
+        b) measured track angle in X an Y direction. */
 
-/*////////////////////   ALIGNMENT-START  ///////////////////////////
-This function extract some quantities/plots from the alignment .root files.*/
-void open_alignment(const char* dirname = "./_data_/August_BENT/", const char *ext = ".root"){
+void open_alignment(const char* dirname = "./_data_/August_BENT/not_checked/", const char *ext = ".root"){
         
 		// this vector strings will contain the names of the .root file of interest
 		// the use of vector string allows for further modifications in the future evetually
 		vector <string> run_number;
+		
 		TSystemDirectory dir(dirname, dirname); 
 		TList *files = dir.GetListOfFiles();
 
@@ -193,7 +203,6 @@ void open_alignment(const char* dirname = "./_data_/August_BENT/", const char *e
 // from now on, there are 3 different blocks per each filename & filetype to be open/analyzed	
             if (!file->IsDirectory() && fname.EndsWith(ext) && fname.BeginsWith("alignment") && fname.BeginsWith("pre")==false){
 				// extract only run number and ADD it to run_number vector
-                // cut only part of interest of the name
 				string run_number_ith = fname.Data();
 				run_number_ith.replace(0,13,""); // ALIGNMENT
 				run_number_ith.replace(9,22,""); // ALL
@@ -205,23 +214,39 @@ void open_alignment(const char* dirname = "./_data_/August_BENT/", const char *e
 				
                 //file_to_open->ls(); // wanna see the folder content? uncomment this line            
                 
-				{gFile->cd("Prealignment/ALPIDE_3/TrackingSpatial");
-				cout << "Alignment is OK" << endl; 
 				
-                // new instructions
+                // extraction
+				{gFile->cd("TrackingSpatial");
+				cout << "prealignment is OK" << endl;
+                TCanvas *canvas = new TCanvas;
+
+                // clustersPerTrack plot
                 TH1F *clustersPerTrack = new TH1F;
                 gDirectory->GetObject("clustersPerTrack", clustersPerTrack);
+                clustersPerTrack -> Draw();
+                canvas->Draw();
+                canvas -> Print("./run_checker/run"+buffer+"_clusterPerTrack.png"); 
 
+                TH1F *trackAngleX = new TH1F;
+                gDirectory->GetObject("trackAngleX", trackAngleX);
+                trackAngleX -> Draw();
+                canvas->Draw();
+                canvas -> Print("./run_checker/run"+buffer+"_trackAngleX.png");
 
+                TH1F *trackAngleY = new TH1F;
+                gDirectory->GetObject("trackAngleY", trackAngleY);
+                trackAngleX -> Draw();
+                canvas->Draw();
+                canvas -> Print("./run_checker/run"+buffer+"_trackAngleY.png");
 
-                }
-								
+                } // extraction block - end     }
 				
 					
 			} //end internal if
 
-        else { cout << "there are not alignment.root files inside ./_data_/ folder, please check. Quitting..." << endl;
-                    return 0;}// end else
+        //else { cout << "there are not alignment.root files inside ./_data_/ folder, please check. Quitting..." << endl;
+          //          return 0;}// end else
+
 		}//end while
 	}//end external if
 	cout << endl << "checked runs are: " << endl;
@@ -235,11 +260,15 @@ for(auto x:run_number) cout << x << endl;
 
 
 
+/* //////////////////   ANALYSIS-START  ////////////////////////
+ 1) This function opens analysis.root files from the targeted folder passed as argument. 
+ 2) It loops over all the alignment.root output files from different runs. 
+ 3) For each run, it extracts and plots only quantities related to the ALPIDE_BENT DUT (Detector Under Test):
+        a) Value of the residuals wrt X and Y coordinate
+        b) efficiency map wrt the DUT chip surface
+        c) total efficiency of the DUT */
 
-
-
-////////////////////   ANALYSIS-START  ///////////////////////////
-void open_analysis(const char* dirname = "./_data_/August_BENT/", const char *ext = ".root"){
+void open_analysis(const char* dirname = "./_data_/August_BENT/not_checked/", const char *ext = ".root"){
         
 		// this vector strings will contain the names of the .root file of interest
 		// the use of vector string allows for further modifications in the future evetually
@@ -277,6 +306,7 @@ void open_analysis(const char* dirname = "./_data_/August_BENT/", const char *ex
                 file_to_open = new TFile(dirname+fname);
                 file_to_open->ls(); // wanna see the folder content? uncomment this line            
                 
+
 				// instructions block
                 {gFile->cd("AnalysisDUT;1/ALPIDE_3;1");
                 TH1F *residualsX;
