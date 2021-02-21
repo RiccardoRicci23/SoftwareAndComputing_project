@@ -48,7 +48,7 @@ void open_prealignment(const char* dirname = "./_data_/August_BENT/not_checked/"
         
 		// this vector strings will contain the names of the .root file of interest
 		// the use of vector string allows for further modifications in the future eventually
-		vector <string> run_number;
+		vector <string> run_number; 
 		TSystemDirectory dir(dirname, dirname); 
 		TList *files = dir.GetListOfFiles();
 
@@ -151,13 +151,15 @@ inside this piece of code i will finaly make a list of .root files to open scann
                 
                 // print
                 canvas->Print("./run_checker/run"+buffer+"_prealignment_DUTcorrelations.png");}           		
-	
-			} //end internal if
-			else { cout << "there are not prealignment.root files inside ./_data_/ folder, please check. Quitting..." << endl;
-                    return 0;}// end else
+	        } //end internal if
+			
 
 		}//end while
 	}//end external if
+			else { cout << "there are not prealignment.root files inside the targeted folder, please check. Quitting..." << endl;
+                    return 0;}// end "external" else
+
+
 for(auto x:run_number) cout << x << endl;
 }
 ////////////////////   PREALIGNMENT-END  ///////////////////////////
@@ -240,15 +242,17 @@ void open_alignment(const char* dirname = "./_data_/August_BENT/not_checked/", c
                 canvas -> Print("./run_checker/run"+buffer+"_trackAngleY.png");
 
                 } // extraction block - end     }
-				
 					
 			} //end internal if
 
-        //else { cout << "there are not alignment.root files inside ./_data_/ folder, please check. Quitting..." << endl;
-          //          return 0;}// end else
-
+        
 		}//end while
 	}//end external if
+        else { cout << "there are not alignment.root files inside the the targeted folder, please check. Quitting..." << endl;
+                    return 0;}// end else
+
+
+
 	cout << endl << "checked runs are: " << endl;
 for(auto x:run_number) cout << x << endl;
 } // end function
@@ -325,13 +329,13 @@ void open_analysis(const char* dirname = "./_data_/August_BENT/not_checked/", co
                 canvas = new TCanvas ("c1", "Residuals X,Y", 200, 10, 1300, 500);
                 canvas -> Divide (2, 1);
                
-                canvas->cd(1)->SetRightMargin(0.09);
-                canvas->cd(1)->SetLeftMargin(0.25);
-                canvas->cd(1)->SetBottomMargin(0.25);
-                
-                canvas->cd(2)->SetRightMargin(0.09);
-                canvas->cd(2)->SetLeftMargin(0.25);
-                canvas->cd(2)->SetBottomMargin(0.25);
+                    canvas->cd(1)->SetRightMargin(0.09);
+                    canvas->cd(1)->SetLeftMargin(0.25);
+                    canvas->cd(1)->SetBottomMargin(0.25);
+                    
+                    canvas->cd(2)->SetRightMargin(0.09);
+                    canvas->cd(2)->SetLeftMargin(0.25);
+                    canvas->cd(2)->SetBottomMargin(0.25);
                 
                     canvas->cd(1);
                     residualsX->Draw();
@@ -365,7 +369,7 @@ void open_analysis(const char* dirname = "./_data_/August_BENT/not_checked/", co
 				
                 //::::::::::: DETECTOR EFFICIENCY MAP EXTRACTION ::::::::::::::::::::::: //
                 TProfile2D *chipEfficiencyMap_trackPos;
-                gDirectory->GetObject("chipEfficiencyMap_trackPos_TProfile", chipEfficiencyMap_trackPos);
+                gDirectory->GetObject("chipEfficiencyMap_trackPos", chipEfficiencyMap_trackPos);
                 canvas = new TCanvas ("c1", "ALPIDE_3 chipEfficiency Map", 200, 10, 750, 500);
                     canvas->SetRightMargin(0.09);
                     canvas->SetLeftMargin(0.15);
@@ -380,11 +384,13 @@ void open_analysis(const char* dirname = "./_data_/August_BENT/not_checked/", co
 								
 					
 			    } //end internal if
-		    else { cout << "there are not analysis.root files inside ./_data_/ folder, please check. Quitting..." << endl;
-                    return 0;}// end else
-
+		    
 		}//end while
 	}//end external if
+        else { cout << "there are not analysis.root files inside the targeted folder, please check. Quitting..." << endl;
+                    return 0;}// end else
+
+
 cout << endl << "checked runs are: " << endl;
 for(auto x:run_number) cout << x << endl;
 } // end function
