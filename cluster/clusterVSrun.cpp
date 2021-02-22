@@ -9,7 +9,7 @@ GENERAL STRUCTURE:
     1. "if" loop to scan inside the targeted folder searching for .root files
         2. internal "while" cycle to loop over each .root file
             3. a) sub-internal "if" to select only certain files depending on their name.  
-               b) data extraction and plotting
+               b) clusters extraction and plotting
 
 
 :::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
@@ -35,13 +35,13 @@ void clusterVSrun(const char *dirname = "./_data_/August_BENT/", const char *ext
     vector <string> run_number;             //here i will save the names of my root file for many different uses
     TSystemDirectory dir(dirname, dirname); //directory, but in ROOT language
     TList *files = dir.GetListOfFiles();        
-// :::::::::::::  ::::::::::::::::::::::: :::::::::::::::::::::::: //
+    // :::::::::::::  ::::::::::::::::::::::: :::::::::::::::::::::::: //
 
         
     
         
         
-//:::::::::::::::::   if-while external block - I/O PART     :::::::::::::::::::: //
+    //:::::::::::::::::   if-while external block - I/O PART     :::::::::::::::::::: //
     if (files) {
         TSystemFile *file;
         TString fname;
@@ -75,7 +75,6 @@ void clusterVSrun(const char *dirname = "./_data_/August_BENT/", const char *ext
                 //:::::::::::: CLUSTER_SIZE EXTRACTION ::::::::::::::::::::::: //
                 //define some pointers for the 2 histos
                 TH1F *CS;
-                //assing clustersSizeAssociated,clustersSizeAssociatedNormalized to the respective pointers
                     gDirectory->GetObject("clusterSizeAssociated", CS);
                                 
                                 
@@ -121,7 +120,7 @@ void clusterVSrun(const char *dirname = "./_data_/August_BENT/", const char *ext
         }//end while
     }// end external if 
         else {
-            cout << "No .root files found. Change the targeted path. Quitting..." << endl;
+            cout << "No analysis.root files found. Change the targeted path. Quitting..." << endl;
             return 0;
     }//end else
     
