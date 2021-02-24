@@ -130,8 +130,11 @@ void clusterVSrun(const char *dirname = "./_data_/August_BENT/", const char *ext
 // ::: runs to be written in a .csv file, to be read by a TGraph ::: //
      ofstream of("./cluster/ClusterSizeAssociatedVSrun.csv"); // output stream to new.csv file
          int n = run_number.size(); // #runs  
-            cout << "n_run_numbers: "<< n << endl;
-         for (int i = 0; i < n; ++i)
+
+            if(n>1) {cout << endl << n << " runs have been found!" << endl;};
+        
+        cout << endl << "run numbers:" << endl; 
+        for (int i = 0; i < n; ++i)
                        {of << run_number[i] << "," << MPV[i] << endl;} // better to use MPV and not mean for now
 						//{of << run_number[i] << "," << ClusterMean[i] << endl;}
  for (auto x : ClusterMean) cout << x << endl;
