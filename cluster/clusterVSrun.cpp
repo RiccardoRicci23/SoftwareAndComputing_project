@@ -127,7 +127,7 @@ void clusterVSrun(const char *dirname = "./_data_/August_BENT/", const char *ext
         
     
 // ::: runs to be written in a .csv file, to be read by a TGraph ::: //
-     ofstream of("./cluster/ClusterSizeAssociatedVSrun.csv"); // output stream to new.csv file
+    ofstream of("./cluster/ClusterSizeAssociatedVSrun.csv"); // output stream to new.csv file
         int n = run_number.size(); // #runs  
         if(n>1) {cout << endl << n << " runs have been found! Find the outputs in ./cluster/ folder." << endl << endl;};
         

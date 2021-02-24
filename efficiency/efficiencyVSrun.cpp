@@ -29,7 +29,7 @@ GENERAL STRUCTURE:
 
 
 
-vector <string> efficiencyVSrun(const char *dirname = "./_data_/August_BENT/", const char *ext = ".root"){
+void efficiencyVSrun(const char *dirname = "./_data_/August_BENT/", const char *ext = ".root"){
     
     cout << "Looking for analysis.root files..." << endl;
     vector <double> efficiency_vector;
@@ -116,14 +116,10 @@ vector <string> efficiencyVSrun(const char *dirname = "./_data_/August_BENT/", c
      ofstream of("./efficiency/TotalEfficiencyVSrun.csv");
         int n = run_number.size(); // #runs  
         if(n>1) {cout << endl << n << " runs have been found! Find the outputs in ./efficiency/ folder." << endl << endl;};
-        cout << endl << "run numbers:" << endl; 
+        
         for (int i = 0; i < n; ++i)
         //filling .csv file
         {of << run_number[i] << "," << efficiency_vector[i] << "," << "0" << "," << eff_err_up[i] << "," << endl;};
-   
 
-    delete files;
-    return run_number;
-    
-    
-}
+    delete files;    
+}// END
