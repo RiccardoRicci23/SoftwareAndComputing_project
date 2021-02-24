@@ -32,8 +32,8 @@ vector <double> ClusterMean;
 void clusterVSrun(const char *dirname = "./_data_/August_BENT/", const char *ext = ".root"){
     cout << "Looking for .root files..." << endl;
     //store array of .root filenames
-    vector <string> run_number;             //here i will save the names of my root file for many different uses
-    TSystemDirectory dir(dirname, dirname); //directory, but in ROOT language
+    vector <string> run_number; 
+    TSystemDirectory dir(dirname, dirname); 
     TList *files = dir.GetListOfFiles();        
     // :::::::::::::  ::::::::::::::::::::::: :::::::::::::::::::::::: //
 
@@ -73,9 +73,8 @@ void clusterVSrun(const char *dirname = "./_data_/August_BENT/", const char *ext
                 
 			 
                 //:::::::::::: CLUSTER_SIZE EXTRACTION ::::::::::::::::::::::: //
-                //define some pointers for the 2 histos
                 TH1F *CS;
-                    gDirectory->GetObject("clusterSizeAssociated", CS);
+                gDirectory->GetObject("clusterSizeAssociated", CS);
                                 
                                 
                     //fit
@@ -129,16 +128,13 @@ void clusterVSrun(const char *dirname = "./_data_/August_BENT/", const char *ext
     
 // ::: runs to be written in a .csv file, to be read by a TGraph ::: //
      ofstream of("./cluster/ClusterSizeAssociatedVSrun.csv"); // output stream to new.csv file
-         int n = run_number.size(); // #runs  
-
-            if(n>1) {cout << endl << n << " runs have been found!" << endl;};
+        int n = run_number.size(); // #runs  
+        if(n>1) {cout << endl << n << " runs have been found! Find the outputs in ./cluster/ folder." << endl << endl;};
         
-        cout << endl << "run numbers:" << endl; 
+        //filling .csv
         for (int i = 0; i < n; ++i)
                        {of << run_number[i] << "," << MPV[i] << endl;} // better to use MPV and not mean for now
 						//{of << run_number[i] << "," << ClusterMean[i] << endl;}
- for (auto x : ClusterMean) cout << x << endl;
-        
         
     delete files;
 	}// END
