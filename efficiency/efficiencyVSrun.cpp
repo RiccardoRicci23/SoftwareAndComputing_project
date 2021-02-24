@@ -18,7 +18,7 @@ GENERAL STRUCTURE:
 
  1. Open ROOT on your terminal
  2. ".L ./efficiency/efficiencyVSrun.cpp" 
- 3. execute the function by calling it: "clusterVSrun()"
+ 3. execute the function by calling it: "efficiencyVSrun()"
 
  It is analogously possible to use a ROOT C++ notebook (SWAN, Jupyter) and run the same commands
  (use .L or the #include "./cluster/clusterVSrun.cpp" depending on your preferences)
@@ -95,9 +95,6 @@ void efficiencyVSrun(const char *dirname = "./_data_/August_BENT/", const char *
 	//TString short_name = buffer_string; // "#run name"
     //TString canvas_file = path + short_name + png;
                 //canvas->Print(canvas_file);
-               
-
-                
  //::::::::::: EFFICIENCY EXTRACTION ::::  END  ::::::::::::::::::: //
 
                 
@@ -107,7 +104,7 @@ void efficiencyVSrun(const char *dirname = "./_data_/August_BENT/", const char *
         }// END WHILE
     } // END IF
 	else {
-        cout << "No .root files found. Change the path in efficiencyVSrun.cc" << endl;
+        cout << "No analysis.root files found. Change the path in efficiencyVSrun.cpp" << endl;
     }// END ELSE
     
 

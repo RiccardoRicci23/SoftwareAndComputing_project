@@ -1,22 +1,38 @@
-// Riccardo Ricci
-// January 8th, 2021
-//Updated January 14th, 2021
+/* Riccardo Ricci
+ created in 2021, January 8th
+ 
+
+ ::::::::::::::::
+ plotter_efficiencyVSrun.cpp
+ ::::::::::::::::
+ the following macro builds a simple TGraphErrors by taking TotalEfficiencyVSrun.csv file, 
+ which is the output of efficiencyVSrun.cpp
+
+
+:::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+ INSTRUCTIONS
+ launch these macros from the main ./ folder. 
+
+ 1. Open ROOT on your terminal
+ 2. ".L ./efficiency/plotter_efficiencyVSrun.cpp" 
+ 3. execute the function by calling it: "plotter_efficiencyVSrun()"
+
+ It is analogously possible to use a ROOT C++ notebook (SWAN, Jupyter) and run the same commands
+ (use .L or the #include "./cluster/clusterVSrun.cpp" depending on your preferences)
+:::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::*/
+
+
+
+
+
 
 
 // ::::::::::::::::::::::::::::: TOTAL EFFICIENCY VS RUN PLOTTER ::::::::::::::::::::::::::::::::::://
-// the following macro builds a simple TGraphErrors by taking clusterVSrun.csv file, which is the output of clusterVSrun.cpp
-// to execute the macro, type:
-            //  .x macro_name.cpp   //
-
-#include "../cluster/clusterVSrun.cpp"
-#include "../efficiency/efficiencyVSrun.cpp"
-
-
 void plotter_efficiencyVSrun(){
     // TGraphAsymmErrors (const char *filename, const char *format="%lg %lg %lg %lg %lg %lg", Option_t *option="")
     // :::::::::::::::::::::::   GRAPH   :::::::::::::::::::::::::: //
 
-	TGraphErrors *g = new TGraphErrors("../efficiency/TotalEfficiencyVSrun.csv", "%lg %lg %lg %lg", ","); //this format applies to .csv files. // %*lg formatting option tells to avoid that certain column.
+	TGraphErrors *g = new TGraphErrors("./efficiency/TotalEfficiencyVSrun.csv", "%lg %lg %lg %lg", ","); //this format applies to .csv files. // %*lg formatting option tells to avoid that certain column.
 	TCanvas *canvas = new TCanvas;
 	g->SetTitle("TotalEfficiency VS RunNumber");
 	canvas->SetGrid();
@@ -71,14 +87,21 @@ void plotter_efficiencyVSrun(){
 
     // "and finally..."
 canvas->Draw();
-canvas->Print("../efficiency/TotalEfficiencyVSrun.png");
+canvas->Print("./efficiency/TotalEfficiencyVSrun.png");
+
+cout << endl << " .csv file has been found! Check the output in ./efficiency/ folder." << endl;
+
 };
+
+
+
+
 
 
 //////////////////////////////////////  
 //////////////////////////////////////
 //									
-//   OVERLOAD | RUN NUMBER RANGE    //
+//   OVERLOAD including RUN NUMBER RANGE    
 //
 //////////////////////////////////////  
 //////////////////////////////////////
@@ -89,7 +112,7 @@ void plotter_TotalEfficiencyVSrun(int run1, int run2){// Tgraph setting
     // TGraphAsymmErrors (const char *filename, const char *format="%lg %lg %lg %lg %lg %lg", Option_t *option="")
     // :::::::::::::::::::::::   GRAPH   :::::::::::::::::::::::::: //
 
-	TGraphErrors *g = new TGraphErrors("../efficiency/TotalEfficiencyVSrun.csv", "%lg %lg %lg %lg", ","); //this format applies to .csv files. // %*lg formatting option tells to avoid that certain column.
+	TGraphErrors *g = new TGraphErrors("./efficiency/TotalEfficiencyVSrun.csv", "%lg %lg %lg %lg", ","); //this format applies to .csv files. // %*lg formatting option tells to avoid that certain column.
 	TCanvas *canvas = new TCanvas;
 	g->SetTitle("TotalEfficiency VS RunNumber");
 	canvas->SetGrid();
@@ -143,5 +166,8 @@ void plotter_TotalEfficiencyVSrun(int run1, int run2){// Tgraph setting
     
     // "and finally..."
 canvas->Draw();
-canvas->Print("../efficiency/TotalEfficiencyVSrun.png");
+canvas->Print("./efficiency/TotalEfficiencyVSrun.png");
+
+cout << endl << " .csv file has been found! Check the output in ./efficiency/ folder." << endl;
+
 }// end of the overload
