@@ -1,16 +1,30 @@
-// Riccardo Ricci
-// January 8th, 2021
-//Updated January 14th, 2021
+/* Riccardo Ricci
+ created in 2021, January 8th
+ 
+
+ ::::::::::::::::
+ plotter_efficiencyVSrun.cpp
+ ::::::::::::::::
+ the following macro builds a simple TGraphErrors by taking TotalEfficiencyVSrun.csv file, 
+ which is the output of efficiencyVSrun.cpp
 
 
-// ::::::::::::::::::::::::::::: TOTAL EFFICIENCY VS RUN PLOTTER ::::::::::::::::::::::::::::::::::://
-// the following macro builds a simple TGraph by taking clusterVSrun.csv file, which is the output of clusterVSrun.cpp
-// to execute the macro, type:
-            //  .x macro_name.cpp   //
+:::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+ INSTRUCTIONS
+ launch these macros from the main ./ folder. 
+
+ 1. Open ROOT on your terminal
+ 2. ".L ./efficiency/plotter_efficiencyVSrun.cpp" 
+ 3. execute the function by calling it: "plotter_efficiencyVScluster()"
+
+ It is analogously possible to use a ROOT C++ notebook (SWAN, Jupyter) and run the same commands
+ (use .L or the #include "./cluster/clusterVSrun.cpp" depending on your preferences)
+:::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::*/
+
 
 
 #include "../cluster/clusterVSrun.cpp"
-#include "../efficiency/efficiencyVSrun.cpp"
+#include "./efficiencyVSrun.cpp"
 
 
 void plotter_efficiencyVScluster(){// Tgraph setting
@@ -21,13 +35,13 @@ void plotter_efficiencyVScluster(){// Tgraph setting
 	clusterVSrun();
 	efficiencyVSrun();
 
-	ofstream of("../efficiency/efficiencyVScluster.csv");
+	ofstream of("./efficiency/efficiencyVScluster.csv");
 		int size_MPV = MPV.size();
 		for(int i = 0; i < size_MPV; ++i)
 			{of << MPV[i] << "," << efficiency_vector[i] << endl;}
 	
 
-	TGraph *g = new TGraph("..//efficiency/efficiencyVScluster.csv", "%lg %lg", ","); //this format applies to .csv files. // %*lg formatting option tells to avoid that certain column.
+	TGraph *g = new TGraph("./efficiency/efficiencyVScluster.csv", "%lg %lg", ","); //this format applies to .csv files. // %*lg formatting option tells to avoid that certain column.
 	TCanvas *canvas = new TCanvas;
 	g->SetTitle("TotalEfficiency VS ClusterSize");
 	canvas->SetGrid();
@@ -82,7 +96,7 @@ void plotter_efficiencyVScluster(){// Tgraph setting
     
     // "and finally..."
 canvas->Draw();
-canvas->Print("../efficiency/efficiencyVScluster.png");
+canvas->Print("./efficiency/efficiencyVScluster.png");
 };
 
 
@@ -100,7 +114,7 @@ void plotter_efficiencyVScluster(double clust1, double clust2){// Tgraph setting
     // TGraphAsymmErrors (const char *filename, const char *format="%lg %lg %lg %lg %lg %lg", Option_t *option="")
     // :::::::::::::::::::::::   GRAPH   :::::::::::::::::::::::::: //
 
-	TGraph *g = new TGraph("../efficiency/efficiencyVScluster.csv", "%lg %lg", ","); //this format applies to .csv files. // %*lg formatting option tells to avoid that certain column.
+	TGraph *g = new TGraph("./efficiency/efficiencyVScluster.csv", "%lg %lg", ","); //this format applies to .csv files. // %*lg formatting option tells to avoid that certain column.
 	TCanvas *canvas = new TCanvas;
 	g->SetTitle("TotalEfficiency VS ClusterSize");
 	canvas->SetGrid();
@@ -150,5 +164,5 @@ void plotter_efficiencyVScluster(double clust1, double clust2){// Tgraph setting
     
     // "and finally..."
 canvas->Draw();
-canvas->Print("../efficiency/efficiencyVScluster.png");
+canvas->Print("./efficiency/efficiencyVScluster.png");
 }

@@ -26,13 +26,13 @@ GENERAL STRUCTURE:
 
 
 
-
-
+    
+vector <double> efficiency_vector;
 
 void efficiencyVSrun(const char *dirname = "./_data_/August_BENT/", const char *ext = ".root"){
-    
+   
     cout << "Looking for analysis.root files..." << endl;
-    vector <double> efficiency_vector;
+
     vector <double> eff_err_up; // globally declared vector in which i will save value of eTotalEfficiency
     vector <double> eff_err_low;
         
