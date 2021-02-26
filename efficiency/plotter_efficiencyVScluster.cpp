@@ -2,10 +2,10 @@
  created in 2021, January 8th
  
 
- ::::::::::::::::
- plotter_efficiencyVSrun.cpp
- ::::::::::::::::
- the following macro builds a simple TGraphErrors by taking TotalEfficiencyVSrun.csv file, 
+ :::::::::::::::::::::::::::::::
+ plotter_efficiencyVScluster.cpp
+ :::::::::::::::::::::::::::::::
+ the following macro builds a simple TGraphErrors by taking TotalEfficiencyVScluster.csv file, 
  which is the output of efficiencyVSrun.cpp
 
 
@@ -24,7 +24,7 @@
 
 
 #include "../cluster/clusterVSrun.cpp"
-#include "./efficiencyVSrun.cpp"
+#include "../efficiency/efficiencyVSrun.cpp"
 
 
 void plotter_efficiencyVScluster(){// Tgraph setting
@@ -35,13 +35,13 @@ void plotter_efficiencyVScluster(){// Tgraph setting
 	clusterVSrun();
 	efficiencyVSrun();
 
-	ofstream of("./efficiency/efficiencyVScluster.csv");
+	ofstream of("./efficiency/TotalEfficiencyVScluster.csv");
 		int size_MPV = MPV.size();
 		for(int i = 0; i < size_MPV; ++i)
 			{of << MPV[i] << "," << efficiency_vector[i] << endl;}
 	
 
-	TGraph *g = new TGraph("./efficiency/efficiencyVScluster.csv", "%lg %lg", ","); //this format applies to .csv files. // %*lg formatting option tells to avoid that certain column.
+	TGraph *g = new TGraph("./efficiency/TotalEfficiencyVScluster.csv", "%lg %lg", ","); //this format applies to .csv files. // %*lg formatting option tells to avoid that certain column.
 	TCanvas *canvas = new TCanvas;
 	g->SetTitle("TotalEfficiency VS ClusterSize");
 	canvas->SetGrid();
@@ -89,7 +89,7 @@ void plotter_efficiencyVScluster(){// Tgraph setting
     
 	// :::::::::::::::::::::::   LEGEND   :::::::::::::::::::::::::: //
 	//canvas->BuildLegend();  //automatically build legend in some empty space
-	TLegend *legend = new TLegend(0.48,0.4,0.8,0.48);
+	TLegend *legend = new TLegend(0.48,0.4,0.8,0.48); // (x1,y1,x2,y2)
 		legend->AddEntry(g);
 		legend->Draw();
 
@@ -97,13 +97,16 @@ void plotter_efficiencyVScluster(){// Tgraph setting
     // "and finally..."
 canvas->Draw();
 canvas->Print("./efficiency/efficiencyVScluster.png");
+cout << endl << " .csv file has been found! Check the output in ./efficiency/ folder." << endl;
 };
+
+
 
 
 //////////////////////////////////////  
 //////////////////////////////////////
 //
-//   OVERLOAD | RUN NUMBER RANGE    //
+//   OVERLOAD | WITH RUN NUMBER RANGE    
 //
 //////////////////////////////////////  
 //////////////////////////////////////
@@ -165,4 +168,5 @@ void plotter_efficiencyVScluster(double clust1, double clust2){// Tgraph setting
     // "and finally..."
 canvas->Draw();
 canvas->Print("./efficiency/efficiencyVScluster.png");
+cout << endl << " .csv file has been found! Check the output in ./efficiency/ folder." << endl;
 }
