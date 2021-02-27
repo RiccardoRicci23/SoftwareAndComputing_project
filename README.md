@@ -3,10 +3,8 @@
 In this framework i'm showing part of my Master Thesis work. 
 The core of this work is a group of macros i have written to perform the analysis of MAPS (Monolythic Active Pixel Sensors) ALPIDE-bent chips, which are under study for the upgrade of the ALICE Inner Tracking System (ITS3), during CERN LHC Long Shutdown 3 (LS3). 
 
+To clone the repository type on your terminal: 
 `git clone https://github.com/RiccardoRicci23/SoftwareAndComputing_project`
-`dd`
-
-
 
 
 # Short Setup description
@@ -42,7 +40,13 @@ Given a single run as example, the typical workflow consists of 3 main steps:
 
 
 ## 1. Run checking: run_checker.cpp 
-Look at the IMAGE below: many tries have been made to match the geometry of the problem, since it was the first time with such configuration. 
+Look at the images below: many tries have been made to match the geometry of the problem and obtain the actual efficiency values. 
+
+![chipEfficiencyMap_trackPos](https://user-images.githubusercontent.com/61977057/109392205-25c9eb80-791b-11eb-99e3-6185fe02e250.png)
+
+![run355234409_chipEfficiencyMap_trackPos](https://user-images.githubusercontent.com/61977057/109394423-3a13e580-7927-11eb-9555-b5d34b1f77bb.png)
+
+
 The run_checker.cpp macro extracts 4 main quantities from 3 different .root files: prealignment.root, aligment.root and analysis.root, which correspond to respectively different outputs as they are computed by Corryvreckan from the .raw data file. 
 
 The 4 extracted quantities are: 
@@ -54,15 +58,35 @@ The 4 extracted quantities are:
 It is possible to find further instructions opening run_checker.cpp file in `./run_checker/` folder. A sample run (run355234407_200828235509) has already been analyzed, but it is possible to check N runs at once pasting the relative .root files inside `./_data_/August_BENT/not_checked/`.
 
 
-## 2. Data extraction
+## 2. Data extraction & analysis: clusterVSrun.cpp and efficiency macros
+The following macros studies some fundamental quantities related to the DUT performance. 
 
-![chipEfficiencyMap_trackPos](https://user-images.githubusercontent.com/61977057/109392205-25c9eb80-791b-11eb-99e3-6185fe02e250.png)
+### clusterVSrun.cpp
 
-Here the same plot is shown (after some corrections in the geometry description):
+This macro extract the MPV of the ClusterSize over the DUT surface per each associated track. For now, we decided to keep using landau fit over the distribution, but we would like to focus better on it and write an appropriate parametrization for the fit.
+It also prints a .csv file with the run as first column and the cluster MPV as second one.
 
-![run355234409_chipEfficiencyMap_trackPos](https://user-images.githubusercontent.com/61977057/109394423-3a13e580-7927-11eb-9555-b5d34b1f77bb.png)
+![355234407](https://user-images.githubusercontent.com/61977057/109395535-2e2b2200-792d-11eb-924d-c1d839872f1f.png)
+
+Usage: open ROOT on your terminal and type: 
+`.L ./cluster&clusterVSrun.cpp`
+`clusterVSrun()`
+
+You can check the macro and relative plots inside `./cluster/`.
+
+
+### efficiencyVSrun.cpp & efficiencyVScluster.cpp
+
+These two macros extracts the total efficiency (%) of the chip and the efficiency 2D plot over the whole chip surface (as for the run_checker.cpp case). They also print 2 .csv file, respectively, with the efficiency value as first column and the run or cluster as second one.
+
+Usage: open ROOT on your terminal and type: 
+`.L ./cluster&clusterVSrun.cpp`
+and
+`efficiencyVSrun()` or `efficiencyVScluster()`
+
+You can check the macros and relative plots inside `./efficiency/`.
 
 
 
-## 3. Data analysis (show plotters)
+## 3. Other plots
 This part is simple indeed. Once the .csv output files are created, ...
