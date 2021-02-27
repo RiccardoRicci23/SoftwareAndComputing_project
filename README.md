@@ -1,19 +1,22 @@
 # SoftwareAndComputing_project
 
 In this framework i'm showing part of my Master Thesis work. 
-The core of this work is a little group of macros i wrote to perform the analysis of ALPIDE-bent chips, which are under study for the upgrade of the ALICE Inner Tracking System (ITS3), during CERN LHC Long Shutdown 3 (LS3). 
+The core of this work is a group of macros i wrote to perform the analysis of ALPIDE-bent chips, which are under study for the upgrade of the ALICE Inner Tracking System (ITS3), during CERN LHC Long Shutdown 3 (LS3). 
 
 
 # Short Setup description
 
-The testbeam was carried out at DESY and to perform the chip charachterization that a 5.4 GeV electron beam has been chosen
+The testbeam was carried out at DESY and to perform the chip charachterization that a 5.4 GeV electron beam has been chosen.
 The experimental setup is made of 3 ALPIDE flat chips + 1 ALPIDE BENT chip + 3 ALPIDE flat chips, where the central BENT chip in the middle is called Detector Under Test (DUT) and the others have been considered as reference planes.  
 The adjustable position on the y-axis allowed to center the beam direction on different regions of the chip. 
 
 
 ////// IMAGE WITH THE SETUP & ALPIDE PHOTO/S
+
 Each run gives a .raw data file as output. 
 A first analysis of each single .raw file has been performed using a specific software, Corryvreckan. 
+
+CORRYVRECKAN LINK, REPOSITORY
 
 
 
