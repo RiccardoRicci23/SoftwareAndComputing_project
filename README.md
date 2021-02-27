@@ -41,7 +41,7 @@ Look at the IMAGE below: many tries have been made to match the geometry of the 
 The run_checker.cpp macro extracts 4 main quantities from 3 different .root files: prealignment.root, aligment.root and analysis.root, which correspond to respectively different outputs as they are computed by Corryvreckan from the .raw data file. 
 
 The 4 extracted quantities are: 
-1. Cluster Size: number of hit pixels associated to every reconstructed track;
+1. Cluster Size: number of hit pixels associated to every reconstructed track (more than 1 fired px can result from single track);
 2. Residuals wrt to X and Y coordinates. Their value is stricly related to the spatial resolution of the detector (SAY HOW, PLEASE);
 3. 2-D Efficiency Map of the ALPIDE chip as a function of (x,y) coordinates in terms of pixel row and column; (HOW is it defined???)
 4. Total Efficiency of the chip. (HOW is it defined???)
@@ -50,5 +50,13 @@ It is possible to find further instructions opening run_checker.cpp file. in the
 
 
 ## 2. Data extraction
-## 3. Data analysis
+![chipEfficiencyMap_trackPos](https://user-images.githubusercontent.com/61977057/109392205-25c9eb80-791b-11eb-99e3-6185fe02e250.png)
 
+Here the same plot is shown (after some corrections in the geometry description):
+
+![run355234407_chipEfficiencyMap_trackPos](https://user-images.githubusercontent.com/61977057/109392247-688bc380-791b-11eb-94e7-559f620a9219.png)
+
+
+
+## 3. Data analysis (show plotters)
+This part is simple indeed. Once the .csv output files are created, ...
