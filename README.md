@@ -3,6 +3,11 @@
 In this framework i'm showing part of my Master Thesis work. 
 The core of this work is a group of macros i have written to perform the analysis of MAPS (Monolythic Active Pixel Sensors) ALPIDE-bent chips, which are under study for the upgrade of the ALICE Inner Tracking System (ITS3), during CERN LHC Long Shutdown 3 (LS3). 
 
+`git clone https://github.com/RiccardoRicci23/SoftwareAndComputing_project`
+`dd`
+
+
+
 
 # Short Setup description
 ![Screenshot (83)](https://user-images.githubusercontent.com/61977057/109390754-b43a6f00-7913-11eb-977b-4896d965c661.png)
@@ -41,10 +46,10 @@ Look at the IMAGE below: many tries have been made to match the geometry of the 
 The run_checker.cpp macro extracts 4 main quantities from 3 different .root files: prealignment.root, aligment.root and analysis.root, which correspond to respectively different outputs as they are computed by Corryvreckan from the .raw data file. 
 
 The 4 extracted quantities are: 
-1. Cluster Size: number of hit pixels associated to every reconstructed track (more than 1 fired px can result from single track);
-2. Residuals wrt to X and Y coordinates. Their value is stricly related to the spatial resolution of the detector (SAY HOW, PLEASE);
-3. 2-D Efficiency Map of the ALPIDE chip as a function of (x,y) coordinates in terms of pixel row and column; (HOW is it defined???)
-4. Total Efficiency of the chip. (HOW is it defined???)
+1. Cluster Size: number of hit pixels associated to every reconstructed track (more than 1 fired px can result from single track). A center-of-gravity technique is then used to estimate the hit position; 
+2. Residuals wrt to X and Y coordinates. They are estimated as the row and column distance between the as99 sociated clusters and the track intercept and their value is stricly related to the spatial resolution of the detector;
+3. 2-D Efficiency Map of the ALPIDE chip as a function of (x,y) coordinates in terms of pixel row and column;
+4. Total Efficiency of the chip. 
 
 It is possible to find further instructions opening run_checker.cpp file. in the main folder. A sample run (run....509) has already been analyzed. There is also the possibility to make the same plots using the other run_number as argument. 
 
