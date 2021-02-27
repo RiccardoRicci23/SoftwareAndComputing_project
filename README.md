@@ -41,7 +41,7 @@ Given a single run as example, the typical workflow consists of 3 main steps:
 - data analysis 
 
 
-## 1. Run checking: 
+## 1. Run checking: run_checker.cpp 
 Look at the IMAGE below: many tries have been made to match the geometry of the problem, since it was the first time with such configuration. 
 The run_checker.cpp macro extracts 4 main quantities from 3 different .root files: prealignment.root, aligment.root and analysis.root, which correspond to respectively different outputs as they are computed by Corryvreckan from the .raw data file. 
 
@@ -51,15 +51,16 @@ The 4 extracted quantities are:
 3. 2-D Efficiency Map of the ALPIDE chip as a function of (x,y) coordinates in terms of pixel row and column;
 4. Total Efficiency of the chip. 
 
-It is possible to find further instructions opening run_checker.cpp file. in the main folder. A sample run (run....509) has already been analyzed. There is also the possibility to make the same plots using the other run_number as argument. 
+It is possible to find further instructions opening run_checker.cpp file in `./run_checker/` folder. A sample run (run355234407_200828235509) has already been analyzed, but it is possible to check N runs at once pasting the relative .root files inside `./_data_/August_BENT/not_checked/`.
 
 
 ## 2. Data extraction
+
 ![chipEfficiencyMap_trackPos](https://user-images.githubusercontent.com/61977057/109392205-25c9eb80-791b-11eb-99e3-6185fe02e250.png)
 
 Here the same plot is shown (after some corrections in the geometry description):
 
-![run355234407_chipEfficiencyMap_trackPos](https://user-images.githubusercontent.com/61977057/109392247-688bc380-791b-11eb-94e7-559f620a9219.png)
+![run355234409_chipEfficiencyMap_trackPos](https://user-images.githubusercontent.com/61977057/109394423-3a13e580-7927-11eb-9555-b5d34b1f77bb.png)
 
 
 
