@@ -69,7 +69,9 @@ It also prints a .csv file with the run as first column and the cluster MPV as s
 ![355234407](https://user-images.githubusercontent.com/61977057/109395535-2e2b2200-792d-11eb-924d-c1d839872f1f.png)
 
 Usage: open ROOT on your terminal and type: 
-`.L ./cluster&clusterVSrun.cpp`
+
+`.L ./cluster&clusterVSrun.cpp` 
+
 `clusterVSrun()`
 
 You can check the macro and relative plots inside `./cluster/`.
@@ -80,13 +82,36 @@ You can check the macro and relative plots inside `./cluster/`.
 These two macros extracts the total efficiency (%) of the chip and the efficiency 2D plot over the whole chip surface (as for the run_checker.cpp case). They also print 2 .csv file, respectively, with the efficiency value as first column and the run or cluster as second one.
 
 Usage: open ROOT on your terminal and type: 
-`.L ./cluster&clusterVSrun.cpp`
-and
-`efficiencyVSrun()` or `efficiencyVScluster()`
+
+`.L ./efficiency/efficiencyVSrun.cpp`
+
+`efficiencyVSrun()` or 
+
+`.L ./efficiency/efficiencyVScluster.cpp`
+
+`efficiencyVScluster()`
 
 You can check the macros and relative plots inside `./efficiency/`.
 
 
 
 ## 3. Other plots
-This part is simple indeed. Once the .csv output files are created, ...
+This part is simple indeed. Once the .csv output files are created, there is the possibility to plot some quantities VS the run or the cluster size by using a simple ROOT TGraph and giving the .csv file as input argument. 
+
+
+Usage: open ROOT on your terminal and type: 
+
+`.L ./cluster/plotter_clusterVSrun.cpp`
+
+then `plotter_clusterVSrun()`.
+
+It is possible also to use an overload and insert an interval of run numbers:
+
+`plotter_clusterVSrun()`. 
+
+This is going to be useful in the future when performing the final analysis over all the dataset, in order to select a certain run period. Also efficiency can be plotted VS run number or cluster MPV with analogous macros.
+You can check the macros and relative plots inside `./cluster/` and `./efficiency/`.
+
+
+
+
