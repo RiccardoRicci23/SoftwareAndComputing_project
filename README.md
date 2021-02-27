@@ -3,8 +3,13 @@
 In this framework i'm showing part of my Master Thesis work. 
 The core of this work is a group of macros i have written to perform the analysis of MAPS (Monolythic Active Pixel Sensors) ALPIDE-bent chips, which are under study for the upgrade of the ALICE Inner Tracking System (ITS3), during CERN LHC Long Shutdown 3 (LS3). 
 
+
 To clone the repository type on your terminal: 
+
 `git clone https://github.com/RiccardoRicci23/SoftwareAndComputing_project`
+
+Software requirements: ROOT (https://root.cern/), git. 
+
 
 
 # Short Setup description
@@ -47,9 +52,9 @@ Look at the images below: many tries have been made to match the geometry of the
 ![run355234409_chipEfficiencyMap_trackPos](https://user-images.githubusercontent.com/61977057/109394423-3a13e580-7927-11eb-9555-b5d34b1f77bb.png)
 
 
-The run_checker.cpp macro extracts 4 main quantities from 3 different .root files: prealignment.root, aligment.root and analysis.root, which correspond to respectively different outputs as they are computed by Corryvreckan from the .raw data file. 
+The run_checker.cpp macro extracts data from 3 different .root files: prealignment.root, aligment.root and analysis.root, which correspond to respectively different outputs as they are computed by Corryvreckan from the .raw data file. 
 
-The 4 extracted quantities are: 
+Most important are: 
 1. Cluster Size: number of hit pixels associated to every reconstructed track (more than 1 fired px can result from single track). A center-of-gravity technique is then used to estimate the hit position; 
 2. Residuals wrt to X and Y coordinates. They are estimated as the row and column distance between the as99 sociated clusters and the track intercept and their value is stricly related to the spatial resolution of the detector;
 3. 2-D Efficiency Map of the ALPIDE chip as a function of (x,y) coordinates in terms of pixel row and column;
@@ -58,7 +63,7 @@ The 4 extracted quantities are:
 It is possible to find further instructions opening run_checker.cpp file in `./run_checker/` folder. A sample run (run355234407_200828235509) has already been analyzed, but it is possible to check N runs at once pasting the relative .root files inside `./_data_/August_BENT/not_checked/`.
 
 
-## 2. Data extraction & analysis: clusterVSrun.cpp and efficiency macros
+## 2. Data extraction: clusterVSrun.cpp and efficiency macros
 The following macros studies some fundamental quantities related to the DUT performance. 
 
 ### clusterVSrun.cpp
@@ -113,5 +118,11 @@ This is going to be useful in the future when performing the final analysis over
 You can check the macros and relative plots inside `./cluster/` and `./efficiency/`.
 
 
+
+## The output branch
+It is also possible to check/compare the outputs switching to the `output_checking` branch. In this one, all the plots are already there.
+To switch type the usual command:
+
+`git checkout output_checking`.
 
 
