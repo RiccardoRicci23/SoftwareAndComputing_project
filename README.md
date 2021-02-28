@@ -140,3 +140,7 @@ To switch type the usual command:
 `git checkout output_checking`.
 
 
+## Conclusion
+This framework is continously evolving and being updated (for that purpose, a CERN-GitLab version will be available), since we are updating the way to describe the bent geometry of the DUT ALPIDE chip, too.
+Surely this work has been useful when comparing the big changes in the first geometry configurations (when trying to match the geometry of the problem with the Corryvreckan code description), switching from 0% to 40% efficiency levels, and then about 99% in the end.
+We hopefully aim to be able to completely analyse the full August dataset before the end of Match, 2021. This will be a great test also for the next ones (DESY, December 2020 and March, 2021). 
