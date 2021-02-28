@@ -160,7 +160,9 @@ inside this piece of code i will finaly make a list of .root files to open scann
                     return 0;}// end "external" else
 
 
+cout << endl << "checked runs are: " << endl;
 for(auto x:run_number) cout << x << endl;
+cout << endl << "check the output in ./run_checker/ " << endl;
 }
 ////////////////////   PREALIGNMENT-END  ///////////////////////////
 
@@ -253,8 +255,9 @@ void open_alignment(const char* dirname = "./_data_/August_BENT/not_checked/", c
 
 
 
-	cout << endl << "checked runs are: " << endl;
+cout << endl << "checked runs are: " << endl;
 for(auto x:run_number) cout << x << endl;
+cout << endl << "check the output in ./run_checker/ " << endl;
 } // end function
 ////////////////////   ALIGNMENT-END  ///////////////////////////
 
@@ -393,6 +396,7 @@ void open_analysis(const char* dirname = "./_data_/August_BENT/not_checked/", co
 
 cout << endl << "checked runs are: " << endl;
 for(auto x:run_number) cout << x << endl;
+cout << endl << "check the output in ./run_checker/ " << endl;
 } // end function
 ////////////////////   ANALYSIS-END  ///////////////////////////
 
