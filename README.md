@@ -1,4 +1,4 @@
-# SoftwareAndComputing_project
+# ITS3-Testbeam-Analysis - SoftwareAndComputing_project
 
 In this framework i'm showing part of my Master Thesis work. 
 The core of this work is a little group of macros i wrote to perform the analysis of ALPIDE-bent chips, which are under study for the upgrade of the ALICE Inner Tracking System (ITS3), during CERN LHC Long Shutdown 3 (LS3). 
