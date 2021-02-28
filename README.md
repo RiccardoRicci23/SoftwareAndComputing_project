@@ -3,7 +3,7 @@
 In this framework i'm showing part of my Master Thesis work. 
 The core of this work is a group of macros i have written to perform the analysis of MAPS (Monolythic Active Pixel Sensors) ALPIDE-bent chips, which are under study for the upgrade of the ALICE Inner Tracking System (ITS3), during CERN LHC Long Shutdown 3 (LS3). 
 
-![EffMapp2D_40](https://user-images.githubusercontent.com/61977057/109415555-a808ed00-79b9-11eb-9578-fe309ac12e48.png)
+
 
 To clone the repository type on your terminal: 
 
@@ -49,7 +49,7 @@ Given a single run as example, the typical workflow consists of 3 main steps:
 Look at the images below: many tries have been made to match the geometry of the problem and obtain the actual efficiency values. 
 
 
-![EffMapp2D_40](https://user-images.githubusercontent.com/61977057/109415559-adfece00-79b9-11eb-8df2-4bbc24e41228.png)
+![EffMapp2D_40](https://user-images.githubusercontent.com/61977057/109415555-a808ed00-79b9-11eb-9578-fe309ac12e48.png)
 
 ![EffMap2D](https://user-images.githubusercontent.com/61977057/109415479-4183cf00-79b9-11eb-8a42-8c4a2b1a19b1.png)
 
