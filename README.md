@@ -9,7 +9,7 @@ To clone the repository type on your terminal:
 
 `git clone https://github.com/RiccardoRicci23/SoftwareAndComputing_project`
 
-Software requirements: ROOT (https://root.cern/), git. 
+Software requirements: ROOT (https://root.cern/), git (https://git-scm.com/). 
 
 
 
@@ -49,10 +49,10 @@ Given a single run as example, the typical workflow consists of 3 main steps:
 Look at the images below: many tries have been made to match the geometry of the problem and obtain the actual efficiency values. 
 
 
-![EffMapp2D_40](https://user-images.githubusercontent.com/61977057/109415555-a808ed00-79b9-11eb-9578-fe309ac12e48.png)
+![EffMapp2D_40](https://user-images.githubusercontent.com/61977057/109416289-8dd10e00-79bd-11eb-848e-145eb0703baf.png)
 
-![EffMap2D](https://user-images.githubusercontent.com/61977057/109416137-b0165c00-79bc-11eb-94e0-ba19a3bd8899.png)
 
+![EffMap2D](https://user-images.githubusercontent.com/61977057/109416261-6e39e580-79bd-11eb-8788-bf06f1ade8a8.png)
 
 
 
