@@ -3,6 +3,7 @@
 In this framework i'm showing part of my Master Thesis work. 
 The core of this work is a group of macros i have written to perform the analysis of MAPS (Monolythic Active Pixel Sensors) ALPIDE-bent chips, which are under study for the upgrade of the ALICE Inner Tracking System (ITS3), during CERN LHC Long Shutdown 3 (LS3). 
 
+![EffMapp2D_40](https://user-images.githubusercontent.com/61977057/109415555-a808ed00-79b9-11eb-9578-fe309ac12e48.png)
 
 To clone the repository type on your terminal: 
 
@@ -47,9 +48,11 @@ Given a single run as example, the typical workflow consists of 3 main steps:
 ## 1. Run checking: run_checker.cpp 
 Look at the images below: many tries have been made to match the geometry of the problem and obtain the actual efficiency values. 
 
-![chipEfficiencyMap_trackPos](https://user-images.githubusercontent.com/61977057/109392205-25c9eb80-791b-11eb-99e3-6185fe02e250.png)
 
-![run355234409_chipEfficiencyMap_trackPos](https://user-images.githubusercontent.com/61977057/109394423-3a13e580-7927-11eb-9555-b5d34b1f77bb.png)
+![EffMapp2D_40](https://user-images.githubusercontent.com/61977057/109415559-adfece00-79b9-11eb-8df2-4bbc24e41228.png)
+
+![EffMap2D](https://user-images.githubusercontent.com/61977057/109415479-4183cf00-79b9-11eb-8a42-8c4a2b1a19b1.png)
+
 
 
 The run_checker.cpp macro extracts data from 3 different .root files: prealignment.root, aligment.root and analysis.root, which correspond to respectively different outputs as they are computed by Corryvreckan from the .raw data file. 
@@ -63,6 +66,16 @@ Most important are:
 It is possible to find further instructions opening run_checker.cpp file in `./run_checker/` folder. A sample run (run355234407_200828235509) has already been analyzed, but it is possible to check N runs at once pasting the relative .root files inside `./_data_/August_BENT/not_checked/`.
 
 
+Usage: open ROOT on your terminal in the main folder `./` and type: 
+
+`.L ./run_checker/run_checker.cpp` 
+
+`run_checker()`
+
+You can check the macro and relative plots inside `./run_checker/`.
+
+
+
 ## 2. Data extraction: clusterVSrun.cpp and efficiency macros
 The following macros studies some fundamental quantities related to the DUT performance. 
 
@@ -73,9 +86,9 @@ It also prints a .csv file with the run as first column and the cluster MPV as s
 
 ![355234407](https://user-images.githubusercontent.com/61977057/109395535-2e2b2200-792d-11eb-924d-c1d839872f1f.png)
 
-Usage: open ROOT on your terminal and type: 
+Usage: open ROOT on your terminal in the main folder `./` and type: 
 
-`.L ./cluster&clusterVSrun.cpp` 
+`.L ./cluster/clusterVSrun.cpp` 
 
 `clusterVSrun()`
 
@@ -86,11 +99,13 @@ You can check the macro and relative plots inside `./cluster/`.
 
 These two macros extracts the total efficiency (%) of the chip and the efficiency 2D plot over the whole chip surface (as for the run_checker.cpp case). They also print 2 .csv file, respectively, with the efficiency value as first column and the run or cluster as second one.
 
-Usage: open ROOT on your terminal and type: 
+Usage: open ROOT on your terminal in the main folder `./` and type: 
 
 `.L ./efficiency/efficiencyVSrun.cpp`
 
-`efficiencyVSrun()` or 
+`efficiencyVSrun()` 
+
+or 
 
 `.L ./efficiency/efficiencyVScluster.cpp`
 
@@ -104,7 +119,7 @@ You can check the macros and relative plots inside `./efficiency/`.
 This part is simple indeed. Once the .csv output files are created, there is the possibility to plot some quantities VS the run or the cluster size by using a simple ROOT TGraph and giving the .csv file as input argument. 
 
 
-Usage: open ROOT on your terminal and type: 
+Usage: open ROOT on your terminal in the main folder `./` and type: 
 
 `.L ./cluster/plotter_clusterVSrun.cpp`
 
