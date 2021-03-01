@@ -53,6 +53,17 @@ Look at the images below: many tries have been made to match the geometry of the
 <img align="right" width="450" height="270" src="https://user-images.githubusercontent.com/61977057/109416538-20be7800-79bf-11eb-8155-4b8d970ab146.png">
 
 
+
+
+
+
+
+
+
+
+
+
+
 The run_checker.cpp macro extracts data from 3 different .root files: prealignment.root, aligment.root and analysis.root, which correspond to respectively different outputs as they are computed by Corryvreckan from the .raw data file. 
 
 Most important are: 
