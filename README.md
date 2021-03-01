@@ -50,6 +50,8 @@ Look at the images below: many tries have been made to match the geometry of the
 
 
 <img align="left" width="450" height="270" src="https://user-images.githubusercontent.com/61977057/109416289-8dd10e00-79bd-11eb-848e-145eb0703baf.png">
+
+
 <img align="left" width="450" height="270" src="https://user-images.githubusercontent.com/61977057/109416538-20be7800-79bf-11eb-8155-4b8d970ab146.png">
 
 
@@ -66,11 +68,11 @@ Look at the images below: many tries have been made to match the geometry of the
 
 The run_checker.cpp macro extracts data from 3 different .root files: prealignment.root, aligment.root and analysis.root, which correspond to respectively different outputs as they are computed by Corryvreckan from the .raw data file. 
 
-Most important are: 
-1. Cluster Size: number of hit pixels associated to every reconstructed track (more than 1 fired px can result from single track). A center-of-gravity technique is then used to estimate the hit position; 
-2. Residuals wrt to X and Y coordinates. They are estimated as the row and column distance between the as99 sociated clusters and the track intercept and their value is stricly related to the spatial resolution of the detector;
-3. 2-D Efficiency Map of the ALPIDE chip as a function of (x,y) coordinates in terms of pixel row and column;
-4. Total Efficiency of the chip. 
+  Most important are: 
+  1. Cluster Size: number of hit pixels associated to every reconstructed track (more than 1 fired px can result from single track). A center-of-gravity technique is then used     to estimate the hit position; 
+  2. Residuals wrt to X and Y coordinates. They are estimated as the row and column distance between the as99 sociated clusters and the track intercept and their value is         stricly related to the spatial resolution of the detector;
+  3. 2-D Efficiency Map of the ALPIDE chip as a function of (x,y) coordinates in terms of pixel row and column;
+  4. Total Efficiency of the chip. 
 
 It is possible to find further instructions opening run_checker.cpp file in `./run_checker/` folder. A sample run (run355234407_200828235509) has already been analyzed, but it is possible to check N runs at once pasting the relative .root files inside `./_data_/August_BENT/not_checked/`.
 
