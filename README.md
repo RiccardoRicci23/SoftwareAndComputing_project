@@ -4,13 +4,13 @@ In this framework i'm showing part of my Master Thesis work.
 The core of this work is a group of macros i have written to perform the analysis of MAPS (Monolythic Active Pixel Sensors) ALPIDE-bent chips, which are under study for the upgrade of the ALICE Inner Tracking System (ITS3), during CERN LHC Long Shutdown 3 (LS3). 
 
 
-
+## Requirements
 To clone the repository type on your terminal: 
 
 `git clone https://github.com/RiccardoRicci23/SoftwareAndComputing_project`
 
 Software requirements: ROOT (https://root.cern/), git (https://git-scm.com/). 
-
+It is also possible to use SWAN (https://swan.web.cern.ch/swan/). In this case, all the .ipynb notebooks become usable since SWAN has complete compatibility with ROOT C++ Jupyter notebooks. 
 
 
 # Short Setup description
@@ -18,8 +18,7 @@ Software requirements: ROOT (https://root.cern/), git (https://git-scm.com/).
 
 
 The testbeam was carried out at DESY and to perform the chip charachterization a 5.4 GeV electron beam has been chosen.
-The experimental setup is made of 3 ALPIDE flat chips + 1 ALPIDE BENT chip + 3 ALPIDE flat chips, where the central BENT chip in the middle is called Detector Under Test (DUT) and the others have been considered as reference planes.  
-The adjustable position of the cylindrical structure the chip was attached to allowed to center the beam direction on different regions of the chip. 
+The experimental setup is made of 3 ALPIDE flat chips + 1 ALPIDE BENT chip + 3 ALPIDE flat chips, where the central BENT chip in the middle is called Detector Under Test (DUT) and the others have been considered as reference planes. 
 
 
 Each run gives a .raw data file as output. 
@@ -30,7 +29,7 @@ A first analysis of each single .raw file has been performed using a specific so
 # The program
 The final aim is to analyse the output .root files coming from the Corryvreckan to study the ALPIDE_BENT performance in the August testbeam. 
 Each .root file contains some crucial quantities (like the chip total efficiency): since the runs number is high, is not convenient to extract data one-by-one by terminal or by using ROOT TBrowser. 
-In particular, some macros to extract/analyse with the capability to extract and compare automatically their value among different runs or given a certain run/time range were needed. 
+In particular, some macros to extract and compare automatically the value and variation of some crucial features/quantities among different runs or given a certain run/time range were needed. 
 
 To accomplish that, i wrote first a simple macro-block in ROOT C++. 
 This is the "core" of all the others, because it allows to open N .root files inside the folder/path of interest and loop every type of operation over the file set. 
@@ -46,7 +45,9 @@ Given a single run as example, the typical workflow consists of 3 main steps:
 
 
 ## 1. Run checking: run_checker.cpp 
-Look at the images below: many tries have been made to match the geometry of the problem and obtain the actual efficiency values. 
+The images below show the efficiency map of the same chip wrt the same runs. 
+The different efficiency map shapes and total efficiency level (about 40% and 99.2% in the first and second case, respectively) comes from mismatching between the real geometry setup and its code description in the Corryvreckan software. 
+Many tries have been made to match the geometry of the problem and obtain the current efficiency values shown in the second picture. 
 
 
 <img align="left" width="450" height="270" src="https://user-images.githubusercontent.com/61977057/109416289-8dd10e00-79bd-11eb-848e-145eb0703baf.png">
@@ -57,7 +58,7 @@ Look at the images below: many tries have been made to match the geometry of the
 
 
 
-The run_checker.cpp macro extracts data from 3 different .root files: prealignment.root, aligment.root and analysis.root, which correspond to respectively different outputs as they are computed by Corryvreckan from the .raw data file. 
+In order to perform a fast check of quantities like these, the run_checker.cpp macro extracts data from 3 different .root files: prealignment.root, aligment.root and analysis.root, which correspond to respectively different outputs as they are computed by Corryvreckan from the .raw data file. Its output gives a "global" check of the quality of the Corryvreckan geometry description.
 
   Most important are: 
   1. Cluster Size: number of hit pixels associated to every reconstructed track (more than 1 fired px can result from single track). A center-of-gravity technique is then used     to estimate the hit position; 
@@ -79,12 +80,12 @@ You can check the macro and relative plots inside `./run_checker/`.
 
 
 ## 2. Data extraction: clusterVSrun.cpp and efficiency macros
-The following macros studies some fundamental quantities related to the DUT performance. 
+The following macros extract some fundamental quantities related to the DUT performance. 
 
 ### clusterVSrun.cpp
 
 This macro extract the MPV of the ClusterSize over the DUT surface per each associated track. For now, we decided to keep using landau fit over the distribution, but we would like to focus better on it and write an appropriate parametrization for the fit.
-It also prints a .csv file with the run as first column and the cluster MPV as second one.
+It also prints a .csv file with the run as first column and the cluster size MPV as second one.
 
 ![355234407](https://user-images.githubusercontent.com/61977057/109395535-2e2b2200-792d-11eb-924d-c1d839872f1f.png)
 
@@ -136,14 +137,13 @@ You can check the macros and relative plots inside `./cluster/` and `./efficienc
 
 
 
-## The output branch
-It is also possible to check/compare the outputs switching to the `output_checking` branch. In this one, all the plots are already there.
-To switch type the usual command:
+### The output branch
+It is also possible to check/compare the outputs switching to the `output_checking` branch, from the project main page on Github. In this one, large parte of the plots is already there.
 
-`git checkout output_checking`.
 
 
 ## Conclusion
-This framework is continously evolving and being updated (for that purpose, a CERN-GitLab version will be available), since we are updating the way to describe the bent geometry of the DUT ALPIDE chip, too.
+This framework is continously evolving and being updated (since this is an exam-devoted project, a CERN-GitLab version will be available soon for this purpose), since we are updating the way to describe the bent geometry of the DUT ALPIDE chip: so also the macros devoted to the analysis will hopefully grow better.
 Surely this work has been useful when comparing the big changes in the first geometry configurations (when trying to match the geometry of the problem with the Corryvreckan code description), switching from 0% to 40% efficiency levels, and then about 99% in the end.
-We hopefully aim to be able to completely analyse the full August dataset before the end of Match, 2021. This will be a great test also for the next ones (DESY, December 2020 and March, 2021). 
+We hopefully aim to be able to completely analyse the full August dataset before the end of March, 2021. 
+This will be a great test also for the next tesbeam datasets (DESY, December 2020 and March, 2021). 
