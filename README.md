@@ -50,10 +50,10 @@ The different efficiency map shapes and total efficiency level (about 40% and 99
 Many tries have been made to match the geometry of the problem and obtain the current efficiency values shown in the second picture. 
 
 
-<img align="left" width="470" height="280" src="https://user-images.githubusercontent.com/61977057/109416289-8dd10e00-79bd-11eb-848e-145eb0703baf.png">
+<img align="left" width="475" height="285" src="https://user-images.githubusercontent.com/61977057/109416289-8dd10e00-79bd-11eb-848e-145eb0703baf.png">
 
 
-<img align="left" width="470" height="280" src="https://user-images.githubusercontent.com/61977057/109475553-275bf680-7a76-11eb-93a2-fc45736650e9.png">
+<img align="left" width="475" height="285" src="https://user-images.githubusercontent.com/61977057/109475553-275bf680-7a76-11eb-93a2-fc45736650e9.png">
 
 
 
