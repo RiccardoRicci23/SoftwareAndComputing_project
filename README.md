@@ -49,8 +49,8 @@ Given a single run as example, the typical workflow consists of 3 main steps:
 Look at the images below: many tries have been made to match the geometry of the problem and obtain the actual efficiency values. 
 
 
-<img align="left" width="450" height="270" src="https://user-images.githubusercontent.com/61977057/109416289-8dd10e00-79bd-11eb-848e-145eb0703baf.png">
-<img align="right" width="450" height="270" src="https://user-images.githubusercontent.com/61977057/109416538-20be7800-79bf-11eb-8155-4b8d970ab146.png">
+<img align="left" width="470" height="290" src="https://user-images.githubusercontent.com/61977057/109416289-8dd10e00-79bd-11eb-848e-145eb0703baf.png">
+<img align="right" width="470" height="290" src="https://user-images.githubusercontent.com/61977057/109416538-20be7800-79bf-11eb-8155-4b8d970ab146.png">
 
 
 
