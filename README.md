@@ -52,16 +52,7 @@ Look at the images below: many tries have been made to match the geometry of the
 <img align="left" width="450" height="270" src="https://user-images.githubusercontent.com/61977057/109416289-8dd10e00-79bd-11eb-848e-145eb0703baf.png">
 
 
-<img align="left" width="450" height="270" src="https://user-images.githubusercontent.com/61977057/109416538-20be7800-79bf-11eb-8155-4b8d970ab146.png">
-
-
-
-
-
-
-
-
-
+<img align="left" width="450" height="270" src="https://user-images.githubusercontent.com/61977057/109475553-275bf680-7a76-11eb-93a2-fc45736650e9.png">
 
 
 
