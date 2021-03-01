@@ -10,7 +10,7 @@ To clone the repository type on your terminal:
 `git clone https://github.com/RiccardoRicci23/SoftwareAndComputing_project`
 
 Software requirements: ROOT (https://root.cern/), git (https://git-scm.com/). 
-It is also possible to use SWAN (https://swan.web.cern.ch/swan/). In this case, all the .ipynb notebooks become usable since SWAN has complete compatibility with ROOT C++ Jupyter notebooks. 
+It is also possible to use SWAN (https://swan.web.cern.ch/swan/) in case you possess a CERN account, using SSO. In this case, all the .ipynb notebooks become usable since SWAN has complete compatibility with ROOT C++ Jupyter notebooks. 
 
 
 # Short Setup description
