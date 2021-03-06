@@ -144,6 +144,6 @@ It is also possible to check/compare the outputs switching to the `output_checki
 
 ## Conclusion
 This framework is continously evolving and being updated (since this is an exam-devoted project, a CERN-GitLab version will be available soon for this purpose), since we are updating the way to describe the bent geometry of the DUT ALPIDE chip: so also the macros devoted to the analysis will hopefully grow better.
-Surely this work has been useful when comparing the big changes in the first geometry configurations (when trying to match the geometry of the problem with the Corryvreckan code description), switching from 0% to 40% efficiency levels, and then about 99% in the end.
+Surely this work has been useful when comparing the big changes in the first geometry configurations (when trying to match the geometry of the problem with the Corryvreckan code description), switching from 0% to 40% efficiency level, and then about 99% in the end.
 We hopefully aim to be able to completely analyse the full August dataset before the end of March, 2021. 
-This will be a great test also for the next tesbeam datasets (DESY, December 2020 and March, 2021). 
+This will be a great test also for the next testbeam datasets (DESY, December 2020 and March, 2021). 
