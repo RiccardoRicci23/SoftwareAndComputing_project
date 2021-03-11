@@ -73,7 +73,7 @@ Usage: open ROOT on your terminal in the main folder `./` and type:
 
 `.L ./run_checker/run_checker.cpp` 
 
-then you can execute three function (it is up to you which one depending on what you are interested):
+then you can execute three function (it is up to you which one depending on what you are interested in):
 
 `open_prealignment()`
 
