@@ -73,7 +73,13 @@ Usage: open ROOT on your terminal in the main folder `./` and type:
 
 `.L ./run_checker/run_checker.cpp` 
 
-`run_checker()`
+then you can execute three function (it is up to you which one depending on what you are interested):
+
+`open_prealignment()`
+
+`open_alignment()`
+
+`open_analysis()`
 
 You can check the macro and relative plots inside `./run_checker/`.
 
