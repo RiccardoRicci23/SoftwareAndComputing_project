@@ -136,7 +136,7 @@ then `plotter_clusterVSrun()`.
 
 It is possible also to use an overload and insert an interval of run numbers:
 
-`plotter_clusterVSrun()`. 
+`plotter_clusterVSrun(run1, run2)`. 
 
 This is going to be useful in the future when performing the final analysis over all the dataset, in order to select a certain run period. Also efficiency can be plotted VS run number or cluster MPV with analogous macros.
 You can check the macros and relative plots inside `./cluster/` and `./efficiency/`.
